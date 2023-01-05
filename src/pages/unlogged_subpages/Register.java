@@ -1,10 +1,7 @@
 package pages.unlogged_subpages;
 
-import actions.RegisterAction;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import database.Session;
-import pages.HomepageLogged;
-import pages.HomepageUnlogged;
 import pages.Page;
 
 public class Register extends Page {
@@ -29,9 +26,11 @@ public class Register extends Page {
         }
         if (getSession().getActionErr() == -1) {
             super.printBasicError();
+            getSession().getHistory().push("logout");
             getSession().getNavigation().add("logout");
         } else {
             getSession().getNavigation().add("logged");
+            getSession().getHistory().push("logged");
             super.printOnPage();
         }
     }
@@ -40,9 +39,9 @@ public class Register extends Page {
      * se muta pe pagina respectiva
      */
     public void move() {
-        System.out.println("a ajuns la move in register se duce la" + super.getSession().getNavigation().peek());
         if (getSession().getNavigation().isEmpty()) {
             getSession().setPageCurr("register");
+            //super.addToHistory("register");
         } else if (getSession().getNavigation().peek().equals("register")) {
             getSession().getNavigation().remove();
             getSession().setPageCurr("register");
@@ -50,6 +49,9 @@ public class Register extends Page {
                     || getSession().getNavigation().peek().equals("logout")) {
            super.navigate(getSession().getNavigation().peek());
         } else {
+            System.out.println("Scoate din History " + getSession().getHistory().peek());
+
+            getSession().getHistory().pop();
             getSession().getNavigation().remove();
             super.printBasicErrorPage();
         }

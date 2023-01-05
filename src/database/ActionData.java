@@ -16,11 +16,39 @@ public class ActionData {
     private String movie;
     private int count;
     private double rate;
+    private String subscribedGenre;
+    private Movie addedMovie;
+    private String deletedMovie;
+
+    public String getDeletedMovie() {
+        return deletedMovie;
+    }
+
+    public void setDeletedMovie(String deletedMovie) {
+        this.deletedMovie = deletedMovie;
+    }
+
+    public Movie getAddedMovie() {
+        return addedMovie;
+    }
+
+    public void setAddedMovie(Movie addedMovie) {
+        this.addedMovie = addedMovie;
+    }
+
+    public String getSubscribedGenre() {
+        return subscribedGenre;
+    }
+
+    public void setSubscribedGenre(String subscribedGenre) {
+        this.subscribedGenre = subscribedGenre;
+    }
 
     /**
      * getter
      * @return
      */
+
     public String getRating() {
         return rating;
     }

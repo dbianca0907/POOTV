@@ -24,9 +24,11 @@ public class Login extends Page {
            return;
         if (getSession().getActionErr() == -1) {
             super.printBasicError();
+            getSession().getHistory().push("logout");
             getSession().getNavigation().add("logout");
         } else {
             getSession().getNavigation().add("logged");
+            getSession().getHistory().push("logged");
             super.printOnPage();
         }
     }
@@ -42,10 +44,13 @@ public class Login extends Page {
         } else if (getSession().getNavigation().peek().equals("login")) {
             getSession().getNavigation().remove();
             getSession().setPageCurr("login");
-        } else if(getSession().getNavigation().peek().equals("logged")
+        } else if (getSession().getNavigation().peek().equals("logged")
                 || getSession().getNavigation().peek().equals("logout")) {
             super.navigate(getSession().getNavigation().peek());
         } else {
+            System.out.println("Scoate din History " + getSession().getHistory().peek());
+
+            getSession().getHistory().pop();
             getSession().getNavigation().remove();
             super.printBasicErrorPage();
         }

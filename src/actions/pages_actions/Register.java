@@ -1,9 +1,10 @@
-package actions;
+package actions.pages_actions;
 
+import actions.Strategy;
 import database.Credentials;
 import database.User;
 
-public class RegisterAction extends Strategy {
+public class Register extends Strategy {
 
     /**
      * se inregistreaza noul user, dupa ce este verificat sa nu existe deja in baza de date

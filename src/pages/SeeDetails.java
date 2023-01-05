@@ -31,31 +31,39 @@ public class SeeDetails extends Page{
             return;
         }
         if (getSession().getFeature().equals("purchase")) {
-                if (getSession().getActionErr() == 1) {
-                    getSession().getCurrentUser().getPurchasedMovies().add(movie);
-                    super.printOneMovie(movie);
+                if (getSession().getActionErr() != -1) {
+                    if (getSession().getActionErr() == 1) {
+                        getSession().getCurrentUser().getPurchasedMovies().add(movie);
+                        super.printOneMovie(movie);
+                    } else {
+                        super.printBasicErrorPage();
+                    }
                     return;
                 }
             }
         if (getSession().getFeature().equals("watch")) {
-            if ( getSession().getActionErr() == 1) {
-                System.out.println("eroare la watch este 1");
-                getSession().getCurrentUser().getWatchedMovies().add(movie);
+            if ( getSession().getActionErr() != -1) {
+                if (getSession().getActionErr() == 1) {
+                    getSession().getCurrentUser().getWatchedMovies().add(movie);
+                }
                 super.printOneMovie(movie);
                 return;
             }
         }
         if (getSession().getFeature().equals("like")) {
-            if (getSession().getActionErr() == 1) {
-                System.out.println("eroare la like este 1");
-                getSession().getCurrentUser().getLikedMovies().add(movie);
+            if (getSession().getActionErr() != -1) {
+                if (getSession().getActionErr() == 1) {
+                    getSession().getCurrentUser().getLikedMovies().add(movie);
+                }
                 super.printOneMovie(movie);
                 return;
             }
         }
         if (getSession().getFeature().equals("rate")) {
-            if (getSession().getActionErr() == 1) {
-                getSession().getCurrentUser().getRatedMovies().add(movie);
+            if (getSession().getActionErr() != -1) {
+                if (getSession().getActionErr() == 1) {
+                    getSession().getCurrentUser().getRatedMovies().add(movie);
+                }
                 super.printOneMovie(movie);
                 return;
             }
@@ -102,6 +110,7 @@ public class SeeDetails extends Page{
 
             super.navigate(getSession().getNavigation().peek());
         } else {
+            getSession().getHistory().pop();
             getSession().getNavigation().remove();
             super.printBasicErrorPage();
         }

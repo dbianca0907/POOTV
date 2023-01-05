@@ -12,8 +12,6 @@ import input.data.InputData;
 import pages.Page;
 import pages.PageFactory;
 
-import java.util.HashMap;
-
 public class Platform {
     public static void main(final InputData input, final ArrayNode output) {
         DataBase database = new DataBase(Parsing.parseUsers(input),
@@ -35,15 +33,33 @@ public class Platform {
                  page.getSession().getNavigation().add("wrongRefresh");
              } else {
                  page.getSession().getNavigation().add(actionInput.getPage());
+                 page.addToHistory(actionInput.getPage());
              }
-              if (actionInput.getPage().equals("see details")) {
-                  page.getSession().getAction().setMovie(actionInput.getMovie());
-              }
-              currPage.move();
-              currPage = factory.getPage(page.getSession().getPageCurr(),
-                                            output, page.getSession());
+             if (actionInput.getPage().equals("see details")) {
+                 page.getSession().getAction().setMovie(actionInput.getMovie());
+             }
+             currPage.move();
+             currPage = factory.getPage(page.getSession().getPageCurr(),
+                     output, page.getSession());
+         } else if (actionInput.getType().equals("back")) {
+             if (!page.getSession().getHistory().isEmpty()
+                 || page.getSession().isLogged()) {
+                 page.getSession().getHistory().pop();
+
+                 if (page.getSession().getHistory().peek().equals("login")
+                         || page.getSession().getHistory().peek().equals("register")) {
+                     page.printBasicErrorPage();
+                 } else {
+                     //System.out.println("la back in platform: " + page.getSession().getHistory().peek());
+                     String namePage = page.getSession().getHistory().peek();
+                     currPage = factory.getPage(namePage,output, page.getSession());
+                     //System.out.println("verifica daca ajunge pe pagina");
+                     currPage.move();
+                 }
+             } else {
+                 page.printBasicError();
+             } // la sfarsit de structurat else-ul si testat, codul dublat
          } else if (actionInput.getType().equals("on page")) {
-             System.out.println("actiune curenta" + actionInput.getFeature());
              ActionData newAction = Parsing.parseAction(actionInput);
               page.getSession().setAction(newAction);
               page.getSession().setFeature(actionInput.getFeature());
@@ -55,7 +71,17 @@ public class Platform {
                   page.getSession().setActionErr(context.executeStrategy());
                   currPage.actions();
               }
-              System.out.println(page.getSession().getOldFeature());
+         } else if (actionInput.getType().equals("database")) {
+             ActionData newAction = Parsing.parseAction(actionInput);
+             page.getSession().setAction(newAction);
+             page.getSession().setFeature(actionInput.getFeature());
+
+             context.setStrategy(actionFactory.getStrategy(actionInput.getFeature()),
+                     page.getSession());
+
+             if (context.executeStrategy() == -1) {
+                 page.printBasicErrorPage();
+             }
          }
       }
 

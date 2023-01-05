@@ -13,7 +13,6 @@ public abstract class Strategy {
         return session;
     }
 
-    abstract int execute();
-
+    public abstract int execute();
 
 }

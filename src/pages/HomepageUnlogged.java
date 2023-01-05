@@ -21,7 +21,12 @@ public class HomepageUnlogged extends Page {
      */
     public void actions() {
         super.getSession().setLogged(false);
-        // de facut cleanup la session
+        super.getSession().getHistory().clear();
+        super.getSession().getHistory().push("logout");
+        if (!super.getSession().getNavigation().isEmpty()) {
+            String namePage = super.getSession().getNavigation().peek();
+            super.getSession().getHistory().push(namePage);
+        }
     }
 
     /**
@@ -31,14 +36,18 @@ public class HomepageUnlogged extends Page {
      * se muta in functie de primul element al cozii pe urmatoarea pagina
      */
     public void move() {
+        //System.out.println("navigation este in logout " + super.getSession().getNavigation().peek());
         if (super.getSession().getNavigation().isEmpty()) {
           actions();
           getSession().setPageCurr("logout");
+          // ajunge la eroare
         } else if (super.getSession().getNavigation().peek().equals("login")
                     || super.getSession().getNavigation().peek().equals("register")) {
             actions();
-           super.navigate(getSession().getNavigation().peek());
+            super.navigate(getSession().getNavigation().peek());
         } else {
+            System.out.println("Scoate din History " + getSession().getHistory().peek());
+            getSession().getHistory().pop();
             getSession().getNavigation().remove();
             getSession().setPageCurr("logout");
             super.printBasicErrorPage();

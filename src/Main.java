@@ -23,10 +23,10 @@ public final class Main {
         String outFile = "./checker/resources/out/basic_" + i + ".json";
         i++;
         // generate output
-        //ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
-        //writer.writeValue(new File(outFile), output);
-
         ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
-        writer.writeValue(outputFile, output);
+        writer.writeValue(new File(outFile), output);
+
+        //ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
+        //writer.writeValue(outputFile, output);
     }
 }

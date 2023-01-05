@@ -1,9 +1,9 @@
-package actions;
+package actions.pages_actions;
 
+import actions.Strategy;
 import database.Movie;
-import database.Session;
 
-public class SearchAction extends Strategy {
+public class Search extends Strategy {
 
     /**
      * cauta filmul care incepe cu string-ul primit la output
@@ -14,6 +14,7 @@ public class SearchAction extends Strategy {
         int found = -1;
         for (Movie movie : getSession().getCurrentMovieList()) {
             if (movie.getName().startsWith(getSession().getAction().getStartsWith())) {
+                // de pus in locul current list
                 getSession().getStartWithMovies().add(movie);
                 found = 1;
             }

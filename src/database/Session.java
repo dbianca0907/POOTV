@@ -3,6 +3,7 @@ package database;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Session {
     private boolean isLogged = false;
@@ -17,8 +18,8 @@ public class Session {
     private String nameCurrMovie;
     private DataBase database;
     private Queue<String> navigation;
+    private Stack<String> history;
     private ActionData action;
-
     private String pageCurr;
 
     /**
@@ -46,6 +47,7 @@ public class Session {
         navigation = new LinkedList<>();
         startWithMovies = new ArrayList<>();
         currentMovieList = new ArrayList<>();
+        history = new Stack<>();
     }
 
     /**
@@ -63,6 +65,14 @@ public class Session {
         }
         setCurrentMovieList(newCurrList);
         setUnbannedMovies(newCurrList);
+    }
+
+    public Stack<String> getHistory() {
+        return history;
+    }
+
+    public void setHistory(Stack<String> history) {
+        this.history = history;
     }
 
     public int getActionErr() {

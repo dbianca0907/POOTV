@@ -1,10 +1,8 @@
 package actions;
 
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import database.Session;
-import pages.*;
-import pages.unlogged_subpages.Login;
-import pages.unlogged_subpages.Register;
+import actions.database_actions.Add;
+import actions.database_actions.Delete;
+import actions.pages_actions.*;
 
 public class ActionFactory {
     public Strategy getStrategy(final String action) {
@@ -12,24 +10,28 @@ public class ActionFactory {
             return null;
         switch (action) {
             case "login":
-                return new LoginAction();
+                return new Login();
             case "register":
-                return new RegisterAction();
+                return new Register();
             case "search":
-                return new SearchAction();
+                return new Search();
             case "filter":
-                return new FilterAction();
+                return new Filter();
             case "buy tokens":
             case "buy premium account":
-                return new BuyAction();
+                return new Buy();
             case "like":
-                return new LikeAction();
+                return new Like();
             case "rate":
-                return new RateAction();
+                return new Rate();
             case "purchase":
-                return new PurchaseAction();
+                return new Purchase();
             case "watch":
-                return new WatchAction();
+                return new Watch();
+            case "delete":
+                return new Delete();
+            case "add":
+                return new Add();
         }
         return null;
     }

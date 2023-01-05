@@ -1,5 +1,6 @@
 package input.actions;
 import input.data.InputCredentials;
+import input.data.InputMovie;
 
 public class ActionsInput {
     private String type;
@@ -11,6 +12,33 @@ public class ActionsInput {
     private String movie;
     private int count;
     private double rate;
+    private String subscribedGenre;
+    private InputMovie addedMovie;
+    private String deletedMovie;
+
+    public String getDeletedMovie() {
+        return deletedMovie;
+    }
+
+    public void setDeletedMovie(String deletedMovie) {
+        this.deletedMovie = deletedMovie;
+    }
+
+    public InputMovie getAddedMovie() {
+        return addedMovie;
+    }
+
+    public void setAddedMovie(InputMovie addedMovie) {
+        this.addedMovie = addedMovie;
+    }
+
+    public String getSubscribedGenre() {
+        return subscribedGenre;
+    }
+
+    public void setSubscribedGenre(String subscribedGenre) {
+        this.subscribedGenre = subscribedGenre;
+    }
 
     /**
      * getter

@@ -1,9 +1,9 @@
-package actions;
-
-import database.Session;
+package actions.pages_actions;
 
 
-public class BuyAction extends Strategy {
+import actions.Strategy;
+
+public class Buy extends Strategy {
     public static final int minTokens = 10;
 
     /**
@@ -24,7 +24,6 @@ public class BuyAction extends Strategy {
             super.getSession().getCurrentUser().setTokensCount(nrTokensUser + count);
             return 1;
         } else if (super.getSession().getAction().getFeature().equals("buy premium account")) {
-            System.out.println("a ajuns in functia de buy premium account");
             if (nrTokensUser < minTokens) {
                 return -1;
             }
@@ -32,7 +31,6 @@ public class BuyAction extends Strategy {
                 return -1;
             }
             super.getSession().getCurrentUser().setTokensCount(nrTokensUser - minTokens);
-            System.out.println( super.getSession().getCurrentUser().getTokensCount());
             super.getSession().getCurrentUser().getCredentials().setAccountType("premium");
             return 1;
         }

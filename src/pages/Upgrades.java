@@ -40,6 +40,7 @@ public class Upgrades extends Page {
           super.navigate(getSession().getNavigation().peek());
         } else {
             getSession().getNavigation().remove();
+            getSession().getHistory().pop();
             super.printBasicErrorPage();
         }
     }

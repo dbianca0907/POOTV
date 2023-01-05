@@ -68,6 +68,14 @@ public class Parsing {
             if (input.getFeature().equals("rate")) {
                 actionData.setRate(input.getRate());
             }
+        } else if (input.getType().equals("subscribe")) {
+            actionData.setSubscribedGenre(input.getSubscribedGenre());
+        } else if (input.getType().equals("database")) {
+            if (input.getFeature().equals("add")) {
+                actionData.setAddedMovie(parseMovie(input));
+            } else {
+                actionData.setDeletedMovie(input.getDeletedMovie());
+            }
         }
         return actionData;
     }
@@ -107,5 +115,17 @@ public class Parsing {
             movies.add(movie);
         }
         return movies;
+    }
+
+    /**
+     *
+     * @param input
+     * @return
+     */
+    public static Movie parseMovie (final ActionsInput input) {
+        Movie movie =  new Movie (input.getAddedMovie().getName(), input.getAddedMovie().getYear(),
+                input.getAddedMovie().getDuration(), input.getAddedMovie().getGenres(),
+                input.getAddedMovie().getActors(), input.getAddedMovie().getCountriesBanned());
+        return movie;
     }
 }

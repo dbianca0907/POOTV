@@ -40,6 +40,8 @@ public class HomepageLogged extends Page {
                 || getSession().getNavigation().peek().equals("upgrades")) {
             super.navigate(getSession().getNavigation().peek());
         } else {
+            System.out.println("Scoate din History " + getSession().getHistory().peek());
+            getSession().getHistory().pop();
             getSession().getNavigation().remove();
             getSession().setPageCurr("logged");
             super.printBasicErrorPage();

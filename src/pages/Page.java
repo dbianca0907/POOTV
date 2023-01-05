@@ -109,7 +109,22 @@ public class Page {
             page.move();
         }
     }
+    public void addToHistory(String namePage) {
+        if (!getSession().getHistory().isEmpty()) {
+            if (!getSession().getHistory().peek().equals(namePage)) {
+                getSession().getHistory().push(namePage);
+                System.out.println(getSession().getHistory().peek());
+            }
+        } else {
+            getSession().getHistory().push(namePage);
+            System.out.println(getSession().getHistory().peek());
+        }
+    }
 
+    /**
+     *
+     * @param namePage
+     */
     public void navigate(String namePage) {
         PageFactory factory = new PageFactory();
         getSession().getNavigation().remove();

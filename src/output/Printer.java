@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import database.Movie;
-import database.Session;
-import database.User;
-import database.Credentials;
+import database.*;
 
 import java.util.ArrayList;
 public final class Printer {
@@ -136,7 +133,7 @@ public final class Printer {
         node.set("watchedMovies", printMovies(user.getWatchedMovies()));
         node.set("likedMovies", printMovies(user.getLikedMovies()));
         node.set("ratedMovies", printMovies(user.getRatedMovies()));
-
+        node.set("notifications", printNotification(user.getNotifications()));
         return node;
     }
 
@@ -156,6 +153,19 @@ public final class Printer {
         return array;
     }
 
+    public ArrayNode printNotification (ArrayList<Notification> notifications) {
+        ArrayNode array = JsonNodeFactory.instance.arrayNode();
+        if (notifications == null)
+            return array;
+        for (Notification notif : notifications) {
+            ObjectNode node = JsonNodeFactory.instance.objectNode();
+            node.put("movieName", notif.getNameMovie());
+            node.put("message", notif.getMessage());
+            array.add(node);
+        }
+        return array;
+    }
+
     /**
      * metoda care creeaza nodul specific afisarii detaliilor unui film
      * @param movie
@@ -163,17 +173,16 @@ public final class Printer {
      */
     public ObjectNode printMovie(final Movie movie) {
         ObjectNode node = JsonNodeFactory.instance.objectNode();
-        String str = String.format("%.2f", movie.getRating());
-        double rate = Double.parseDouble(str);
+        String year = String.valueOf(movie.getYear());
 
         node.put("name", movie.getName());
-        node.put("year", movie.getYear());
+        node.put("year", year);
         node.put("duration", movie.getDuration());
         node.set("genres", makeArrString(movie.getGenres()));
         node.set("actors", makeArrString(movie.getActors()));
         node.set("countriesBanned", makeArrString(movie.getCountriesBanned()));
         node.put("numLikes", movie.getNumLikes());
-        node.put("rating", rate);
+        node.put("rating", movie.getRating());
         node.put("numRatings", movie.getNumRatings());
         return node;
     }

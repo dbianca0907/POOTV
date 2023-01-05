@@ -1,8 +1,28 @@
-package actions;
+package actions.pages_actions;
 
-import database.Session;
+import actions.Strategy;
+import database.Movie;
 
-public class PurchaseAction extends Strategy {
+import java.util.ArrayList;
+
+public class Purchase extends Strategy {
+    /**
+     * cauta filmul in lista de filme cumparate
+     *
+     * @return 1, daca nu este deja cumparat
+     *          -1, daca a fost cumparat de user deja
+     */
+    public int findMovie() {
+        String nameMovie = super.getSession().getNameCurrMovie();
+        ArrayList<Movie> movies = super.getSession().getCurrentUser().getPurchasedMovies();
+
+        for (Movie movie: movies) {
+            if (movie.getName().equals(nameMovie)) {
+                return -1;
+            }
+        }
+        return 1;
+    }
 
     /**
      * metoda pentru cumpoararea filmului
@@ -11,6 +31,10 @@ public class PurchaseAction extends Strategy {
      *          1, daca actiunea s-a realizat cu succes
      */
     public int execute() {
+        if (findMovie() == -1) {
+            super.getSession().setOldFeature("purchase");
+            return 0;
+        }
         if (super.getSession().getOldFeature().equals("watch")
             || super.getSession().getOldFeature().equals("like")
             || super.getSession().getOldFeature().equals("rate"))

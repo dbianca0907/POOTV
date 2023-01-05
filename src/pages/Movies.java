@@ -53,6 +53,7 @@ public class Movies extends Page {
                     || getSession().getNavigation().peek().equals("see details")) {
             super.navigate(getSession().getNavigation().peek());
         } else {
+            getSession().getHistory().pop();
             getSession().getNavigation().remove();
             super.printBasicErrorPage();
         }

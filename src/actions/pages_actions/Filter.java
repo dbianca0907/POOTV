@@ -1,13 +1,12 @@
-package actions;
+package actions.pages_actions;
 
+import actions.Strategy;
 import database.Movie;
-import database.Session;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
-public class FilterAction extends Strategy {
+public class Filter extends Strategy {
 
     /**
      * functie care seteaza filmele, prima oara in functie de Duration
