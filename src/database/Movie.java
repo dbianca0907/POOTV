@@ -2,6 +2,7 @@ package database;
 
 import java.util.ArrayList;
 import java.text.DecimalFormat;
+import java.util.HashMap;
 
 public class Movie {
     private String name;
@@ -10,7 +11,8 @@ public class Movie {
     private ArrayList<String> genres;
     private  ArrayList<String> actors;
     private  ArrayList<String> countriesBanned;
-    private ArrayList<Double> userRates;
+   // private ArrayList<Double> userRates;
+    private HashMap<String, Double> userRates;
     private int numLikes = 0;
     private double rating = 0.00;
     private int numRatings = 0;
@@ -33,14 +35,14 @@ public class Movie {
         this.genres = genres;
         this.actors = actors;
         this.countriesBanned = countriesBanned;
-        userRates = new ArrayList<>();
+        userRates = new HashMap<>();
     }
 
     /**
      * getter
      * @return
      */
-    public ArrayList<Double> getUserRates() {
+    public HashMap<String, Double> getUserRates() {
         return userRates;
     }
 

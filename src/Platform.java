@@ -1,7 +1,7 @@
-import actions.ActionFactory;
-import actions.Context;
-import backup_actions.CommandAction;
-import backup_actions.SnapshotAction;
+import actions.actions_database.Recomendation;
+import actions.factory_design.ActionFactory;
+import actions.observer_design.EventManager;
+import actions.strategy_design.Context;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import database.ActionData;
 import database.DataBase;
@@ -9,6 +9,7 @@ import database.Session;
 import input.Parsing;
 import input.actions.ActionsInput;
 import input.data.InputData;
+import output.Printer;
 import pages.Page;
 import pages.PageFactory;
 
@@ -42,18 +43,20 @@ public class Platform {
              currPage = factory.getPage(page.getSession().getPageCurr(),
                      output, page.getSession());
          } else if (actionInput.getType().equals("back")) {
+             page.getSession().getAction().setType("back");
              if (!page.getSession().getHistory().isEmpty()
                  || page.getSession().isLogged()) {
-                 page.getSession().getHistory().pop();
-
+                 if (!page.getSession().isBackErr()) {
+                     page.getSession().getHistory().pop();
+                 }
                  if (page.getSession().getHistory().peek().equals("login")
                          || page.getSession().getHistory().peek().equals("register")) {
+                     page.getSession().setBackErr(true);
                      page.printBasicErrorPage();
                  } else {
-                     //System.out.println("la back in platform: " + page.getSession().getHistory().peek());
+                     page.getSession().setBackErr(false);
                      String namePage = page.getSession().getHistory().peek();
                      currPage = factory.getPage(namePage,output, page.getSession());
-                     //System.out.println("verifica daca ajunge pe pagina");
                      currPage.move();
                  }
              } else {
@@ -75,14 +78,21 @@ public class Platform {
              ActionData newAction = Parsing.parseAction(actionInput);
              page.getSession().setAction(newAction);
              page.getSession().setFeature(actionInput.getFeature());
-
              context.setStrategy(actionFactory.getStrategy(actionInput.getFeature()),
                      page.getSession());
-
              if (context.executeStrategy() == -1) {
                  page.printBasicErrorPage();
              }
          }
+      }
+      if (page.getSession().isLogged()) {
+          String accountType = page.getSession().getCurrentUser().getCredentials().getAccountType();
+          if (accountType.equals("premium")) {
+              Recomendation recomendation = new Recomendation(page.getSession());
+              recomendation.execute();
+              Printer printer = Printer.getInstance();
+              printer.printRecomendation(session, output);
+          }
       }
 
     }

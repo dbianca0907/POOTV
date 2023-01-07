@@ -7,6 +7,7 @@ import java.util.Stack;
 
 public class Session {
     private boolean isLogged = false;
+    private boolean backErr = false;
     private int actionErr;
     private User currentUser;
     private ArrayList<Movie> startWithMovies;
@@ -65,6 +66,14 @@ public class Session {
         }
         setCurrentMovieList(newCurrList);
         setUnbannedMovies(newCurrList);
+    }
+
+    public boolean isBackErr() {
+        return backErr;
+    }
+
+    public void setBackErr(boolean backErr) {
+        this.backErr = backErr;
     }
 
     public Stack<String> getHistory() {

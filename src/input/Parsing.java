@@ -68,8 +68,9 @@ public class Parsing {
             if (input.getFeature().equals("rate")) {
                 actionData.setRate(input.getRate());
             }
-        } else if (input.getType().equals("subscribe")) {
-            actionData.setSubscribedGenre(input.getSubscribedGenre());
+            if (input.getFeature().equals("subscribe")) {
+                actionData.setSubscribedGenre(input.getSubscribedGenre());
+            }
         } else if (input.getType().equals("database")) {
             if (input.getFeature().equals("add")) {
                 actionData.setAddedMovie(parseMovie(input));

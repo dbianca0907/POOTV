@@ -666,9 +666,74 @@
     "notifications" : [ ]
   }
 }, {
-  "error" : "Error",
-  "currentMoviesList" : [ ],
-  "currentUser" : null
+  "error" : null,
+  "currentMoviesList" : [ {
+    "name" : "My Sassy Girl",
+    "year" : "2005",
+    "duration" : 125,
+    "genres" : [ "Comedy", "Mystery", "Fantasy" ],
+    "actors" : [ "Mabel MacAless", "Iggy MacUchadair", "Arni Harrow", "Reg Kelleher" ],
+    "countriesBanned" : [ "Dominican Republic", "Indonesia", "Japan" ],
+    "numLikes" : 1,
+    "rating" : 3.0,
+    "numRatings" : 1
+  } ],
+  "currentUser" : {
+    "credentials" : {
+      "name" : "Mihail",
+      "password" : "discret",
+      "accountType" : "premium",
+      "country" : "China",
+      "balance" : "1337"
+    },
+    "tokensCount" : 0,
+    "numFreePremiumMovies" : 14,
+    "purchasedMovies" : [ {
+      "name" : "My Sassy Girl",
+      "year" : "2005",
+      "duration" : 125,
+      "genres" : [ "Comedy", "Mystery", "Fantasy" ],
+      "actors" : [ "Mabel MacAless", "Iggy MacUchadair", "Arni Harrow", "Reg Kelleher" ],
+      "countriesBanned" : [ "Dominican Republic", "Indonesia", "Japan" ],
+      "numLikes" : 1,
+      "rating" : 3.0,
+      "numRatings" : 1
+    } ],
+    "watchedMovies" : [ {
+      "name" : "My Sassy Girl",
+      "year" : "2005",
+      "duration" : 125,
+      "genres" : [ "Comedy", "Mystery", "Fantasy" ],
+      "actors" : [ "Mabel MacAless", "Iggy MacUchadair", "Arni Harrow", "Reg Kelleher" ],
+      "countriesBanned" : [ "Dominican Republic", "Indonesia", "Japan" ],
+      "numLikes" : 1,
+      "rating" : 3.0,
+      "numRatings" : 1
+    } ],
+    "likedMovies" : [ {
+      "name" : "My Sassy Girl",
+      "year" : "2005",
+      "duration" : 125,
+      "genres" : [ "Comedy", "Mystery", "Fantasy" ],
+      "actors" : [ "Mabel MacAless", "Iggy MacUchadair", "Arni Harrow", "Reg Kelleher" ],
+      "countriesBanned" : [ "Dominican Republic", "Indonesia", "Japan" ],
+      "numLikes" : 1,
+      "rating" : 3.0,
+      "numRatings" : 1
+    } ],
+    "ratedMovies" : [ {
+      "name" : "My Sassy Girl",
+      "year" : "2005",
+      "duration" : 125,
+      "genres" : [ "Comedy", "Mystery", "Fantasy" ],
+      "actors" : [ "Mabel MacAless", "Iggy MacUchadair", "Arni Harrow", "Reg Kelleher" ],
+      "countriesBanned" : [ "Dominican Republic", "Indonesia", "Japan" ],
+      "numLikes" : 1,
+      "rating" : 3.0,
+      "numRatings" : 1
+    } ],
+    "notifications" : [ ]
+  }
 }, {
   "error" : null,
   "currentMoviesList" : [ ],
@@ -1331,7 +1396,7 @@
     "actors" : [ "Camey Ingold", "Grace Volleth", "Jermaine D'Ruel", "Anselma Saxelby" ],
     "countriesBanned" : [ "Russia", "Saudi Arabia", "Zimbabwe" ],
     "numLikes" : 0,
-    "rating" : 3.5,
+    "rating" : 2.0,
     "numRatings" : 1
   }, {
     "name" : "My Sassy Girl",
@@ -1341,8 +1406,8 @@
     "actors" : [ "Mabel MacAless", "Iggy MacUchadair", "Arni Harrow", "Reg Kelleher" ],
     "countriesBanned" : [ "Dominican Republic", "Indonesia", "Japan" ],
     "numLikes" : 1,
-    "rating" : 0.0,
-    "numRatings" : 0
+    "rating" : 3.0,
+    "numRatings" : 1
   }, {
     "name" : "Kiwi!",
     "year" : "2002",
@@ -1583,16 +1648,6 @@
     "rating" : 0.0,
     "numRatings" : 0
   }, {
-    "name" : "My Sassy Girl",
-    "year" : "2005",
-    "duration" : 125,
-    "genres" : [ "Comedy", "Mystery", "Fantasy" ],
-    "actors" : [ "Mabel MacAless", "Iggy MacUchadair", "Arni Harrow", "Reg Kelleher" ],
-    "countriesBanned" : [ "Dominican Republic", "Indonesia", "Japan" ],
-    "numLikes" : 1,
-    "rating" : 0.0,
-    "numRatings" : 0
-  }, {
     "name" : "Lord, Save Us from Your Followers",
     "year" : "1998",
     "duration" : 125,
@@ -1600,7 +1655,17 @@
     "actors" : [ "Camey Ingold", "Grace Volleth", "Jermaine D'Ruel", "Anselma Saxelby" ],
     "countriesBanned" : [ "Russia", "Saudi Arabia", "Zimbabwe" ],
     "numLikes" : 0,
-    "rating" : 3.5,
+    "rating" : 2.0,
+    "numRatings" : 1
+  }, {
+    "name" : "My Sassy Girl",
+    "year" : "2005",
+    "duration" : 125,
+    "genres" : [ "Comedy", "Mystery", "Fantasy" ],
+    "actors" : [ "Mabel MacAless", "Iggy MacUchadair", "Arni Harrow", "Reg Kelleher" ],
+    "countriesBanned" : [ "Dominican Republic", "Indonesia", "Japan" ],
+    "numLikes" : 1,
+    "rating" : 3.0,
     "numRatings" : 1
   }, {
     "name" : "The Empty Hours",
@@ -1698,5 +1763,57 @@
     } ],
     "ratedMovies" : [ ],
     "notifications" : [ ]
+  }
+}, {
+  "error" : null,
+  "currentMoviesList" : null,
+  "currentUser" : {
+    "credentials" : {
+      "name" : "Eduard",
+      "password" : "secret",
+      "accountType" : "premium",
+      "country" : "India",
+      "balance" : "50"
+    },
+    "tokensCount" : 0,
+    "numFreePremiumMovies" : 14,
+    "purchasedMovies" : [ {
+      "name" : "The Well-Digger's Daughter",
+      "year" : "1994",
+      "duration" : 141,
+      "genres" : [ "Comedy", "Mystery", "Drama" ],
+      "actors" : [ "Fallon Sutcliff", "Maribeth Penas", "Codee Hooks", "Rubia Cotilard" ],
+      "countriesBanned" : [ "China", "South Africa", "Zimbabwe" ],
+      "numLikes" : 1,
+      "rating" : 0.0,
+      "numRatings" : 0
+    } ],
+    "watchedMovies" : [ {
+      "name" : "The Well-Digger's Daughter",
+      "year" : "1994",
+      "duration" : 141,
+      "genres" : [ "Comedy", "Mystery", "Drama" ],
+      "actors" : [ "Fallon Sutcliff", "Maribeth Penas", "Codee Hooks", "Rubia Cotilard" ],
+      "countriesBanned" : [ "China", "South Africa", "Zimbabwe" ],
+      "numLikes" : 1,
+      "rating" : 0.0,
+      "numRatings" : 0
+    } ],
+    "likedMovies" : [ {
+      "name" : "The Well-Digger's Daughter",
+      "year" : "1994",
+      "duration" : 141,
+      "genres" : [ "Comedy", "Mystery", "Drama" ],
+      "actors" : [ "Fallon Sutcliff", "Maribeth Penas", "Codee Hooks", "Rubia Cotilard" ],
+      "countriesBanned" : [ "China", "South Africa", "Zimbabwe" ],
+      "numLikes" : 1,
+      "rating" : 0.0,
+      "numRatings" : 0
+    } ],
+    "ratedMovies" : [ ],
+    "notifications" : [ {
+      "movieName" : "My Sassy Girl",
+      "message" : "Recommendation"
+    } ]
   }
 } ]

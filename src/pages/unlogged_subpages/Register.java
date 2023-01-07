@@ -41,7 +41,6 @@ public class Register extends Page {
     public void move() {
         if (getSession().getNavigation().isEmpty()) {
             getSession().setPageCurr("register");
-            //super.addToHistory("register");
         } else if (getSession().getNavigation().peek().equals("register")) {
             getSession().getNavigation().remove();
             getSession().setPageCurr("register");
@@ -49,8 +48,6 @@ public class Register extends Page {
                     || getSession().getNavigation().peek().equals("logout")) {
            super.navigate(getSession().getNavigation().peek());
         } else {
-            System.out.println("Scoate din History " + getSession().getHistory().peek());
-
             getSession().getHistory().pop();
             getSession().getNavigation().remove();
             super.printBasicErrorPage();

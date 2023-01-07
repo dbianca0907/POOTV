@@ -86,7 +86,6 @@ public final class Printer {
         if (session.getFeature().equals("search")) {
             curr = session.getStartWithMovies();
         } else if (session.getPageCurr().equals("movies")) {
-            //System.out.println("afiseaza filmele filtrate");
             curr = session.getCurrentMovieList();
         }
         node.set("error", (JsonNode) null);
@@ -98,6 +97,14 @@ public final class Printer {
             node.set("currentUser", (JsonNode) null);
         }
 
+        output.add(node);
+    }
+
+    public void printRecomendation(final Session session, final ArrayNode output) {
+        ObjectNode node = JsonNodeFactory.instance.objectNode();
+        node.set("error", (JsonNode) null);
+        node.set("currentMoviesList", (JsonNode) null);
+        node.put("currentUser", printCurrUser(session.getCurrentUser()));
         output.add(node);
     }
 

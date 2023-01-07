@@ -68,6 +68,11 @@ public class SeeDetails extends Page{
                 return;
             }
         }
+        if (getSession().getFeature().equals("subscribe")
+            && getSession().getActionErr() == 1) {
+            return;
+        }
+
         super.printBasicErrorPage();
     }
 
@@ -75,13 +80,16 @@ public class SeeDetails extends Page{
      * se verifica daca exista filmul curent in currentList
      */
     public int verifNameMovie() {
-        for (Movie movie : getSession().getCurrentMovieList()) {
-            if (movie.getName().equals(super.getSession().getAction().getMovie())) {
-                getSession().setNameCurrMovie(super.getSession().getAction().getMovie());
-                super.printOneMovie(movie);
-                return 1;
+        if (!getSession().getCurrentMovieList().isEmpty()) {
+            for (Movie movie : getSession().getCurrentMovieList()) {
+                if (movie.getName().equals(super.getSession().getAction().getMovie())) {
+                    getSession().setNameCurrMovie(super.getSession().getAction().getMovie());
+                    super.printOneMovie(movie);
+                    return 1;
+                }
             }
         }
+        getSession().getHistory().pop();
         super.printBasicErrorPage();
         return 0;
     }

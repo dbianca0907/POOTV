@@ -46,7 +46,6 @@ public class HomepageUnlogged extends Page {
             actions();
             super.navigate(getSession().getNavigation().peek());
         } else {
-            System.out.println("Scoate din History " + getSession().getHistory().peek());
             getSession().getHistory().pop();
             getSession().getNavigation().remove();
             getSession().setPageCurr("logout");

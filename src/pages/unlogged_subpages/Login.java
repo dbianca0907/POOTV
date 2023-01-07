@@ -48,8 +48,6 @@ public class Login extends Page {
                 || getSession().getNavigation().peek().equals("logout")) {
             super.navigate(getSession().getNavigation().peek());
         } else {
-            System.out.println("Scoate din History " + getSession().getHistory().peek());
-
             getSession().getHistory().pop();
             getSession().getNavigation().remove();
             super.printBasicErrorPage();
