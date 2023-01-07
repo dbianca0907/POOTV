@@ -36,11 +36,9 @@ public class HomepageUnlogged extends Page {
      * se muta in functie de primul element al cozii pe urmatoarea pagina
      */
     public void move() {
-        //System.out.println("navigation este in logout " + super.getSession().getNavigation().peek());
         if (super.getSession().getNavigation().isEmpty()) {
           actions();
           getSession().setPageCurr("logout");
-          // ajunge la eroare
         } else if (super.getSession().getNavigation().peek().equals("login")
                     || super.getSession().getNavigation().peek().equals("register")) {
             actions();

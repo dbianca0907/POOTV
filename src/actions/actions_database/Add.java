@@ -20,7 +20,6 @@ public class Add extends Strategy {
         EventManager eventManager = new EventManager(super.getSession().getDatabase());
         Movie newMovie = super.getSession().getAction().getAddedMovie();
         ArrayList<Movie> allMovies = super.getSession().getDatabase().getAllMovies();
-
         if (findMovie(allMovies, newMovie.getName()) == -1)
             return -1;
         allMovies.add(newMovie);

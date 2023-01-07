@@ -1665,16 +1665,6 @@
       "numLikes" : 0,
       "rating" : 2.5,
       "numRatings" : 2
-    }, {
-      "name" : "Titanic",
-      "year" : "2019",
-      "duration" : 131,
-      "genres" : [ "Action", "Thriller", "Crime" ],
-      "actors" : [ "Laurence Fishburne", "Halle Berry", "Keanu Reeves" ],
-      "countriesBanned" : [ "Russia" ],
-      "numLikes" : 0,
-      "rating" : 3.0,
-      "numRatings" : 2
     } ],
     "notifications" : [ ]
   }
@@ -1774,16 +1764,6 @@
       "numLikes" : 0,
       "rating" : 2.5,
       "numRatings" : 2
-    }, {
-      "name" : "Titanic",
-      "year" : "2019",
-      "duration" : 131,
-      "genres" : [ "Action", "Thriller", "Crime" ],
-      "actors" : [ "Laurence Fishburne", "Halle Berry", "Keanu Reeves" ],
-      "countriesBanned" : [ "Russia" ],
-      "numLikes" : 0,
-      "rating" : 3.0,
-      "numRatings" : 2
     } ],
     "notifications" : [ ]
   }
@@ -1882,16 +1862,6 @@
       "countriesBanned" : [ "Russia" ],
       "numLikes" : 0,
       "rating" : 2.5,
-      "numRatings" : 2
-    }, {
-      "name" : "Titanic",
-      "year" : "2019",
-      "duration" : 131,
-      "genres" : [ "Action", "Thriller", "Crime" ],
-      "actors" : [ "Laurence Fishburne", "Halle Berry", "Keanu Reeves" ],
-      "countriesBanned" : [ "Russia" ],
-      "numLikes" : 0,
-      "rating" : 3.0,
       "numRatings" : 2
     } ],
     "notifications" : [ ]

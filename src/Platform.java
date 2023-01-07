@@ -43,18 +43,23 @@ public class Platform {
              currPage = factory.getPage(page.getSession().getPageCurr(),
                      output, page.getSession());
          } else if (actionInput.getType().equals("back")) {
+            // System.out.println(page.getSession().isBackErr());
+             System.out.println("pagina curenta este" + page.getSession().getPageCurr());
              page.getSession().getAction().setType("back");
              if (!page.getSession().getHistory().isEmpty()
                  || page.getSession().isLogged()) {
-                 if (!page.getSession().isBackErr()) {
+                 String backPage = page.getSession().getHistory().peek();
+                 if (!page.getSession().getBackErrors().contains(backPage)) {
                      page.getSession().getHistory().pop();
+                     System.out.println("se duce la pagina " + page.getSession().getHistory().peek());
                  }
                  if (page.getSession().getHistory().peek().equals("login")
                          || page.getSession().getHistory().peek().equals("register")) {
-                     page.getSession().setBackErr(true);
+                     System.out.println("afiseaza eroare in back");
+                     //page.getSession().setBackErr(true);
                      page.printBasicErrorPage();
                  } else {
-                     page.getSession().setBackErr(false);
+                     //page.getSession().setBackErr(false);
                      String namePage = page.getSession().getHistory().peek();
                      currPage = factory.getPage(namePage,output, page.getSession());
                      currPage.move();

@@ -113,11 +113,9 @@ public class Page {
         if (!getSession().getHistory().isEmpty()) {
             if (!getSession().getHistory().peek().equals(namePage)) {
                 getSession().getHistory().push(namePage);
-                System.out.println(getSession().getHistory().peek());
             }
         } else {
             getSession().getHistory().push(namePage);
-            System.out.println(getSession().getHistory().peek());
         }
     }
 

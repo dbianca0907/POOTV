@@ -4,6 +4,7 @@ import actions.observer_design.Observer;
 
 import java.util.ArrayList;
 public class User implements Observer {
+    boolean isNotified = false;
    private Credentials credentials;
     private ArrayList<Movie> purchasedMovies;
     private ArrayList<Movie> watchedMovies;
@@ -26,6 +27,15 @@ public class User implements Observer {
 
     public void update (Notification notification) {
         getNotifications().add(notification);
+        setNotified(true);
+    }
+
+    public boolean isNotified() {
+        return isNotified;
+    }
+
+    public void setNotified(boolean notified) {
+        isNotified = notified;
     }
 
     /**

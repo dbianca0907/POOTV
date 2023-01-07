@@ -43,6 +43,7 @@ public class Movies extends Page {
         if (getSession().getNavigation().isEmpty()) {
             getSession().setPageCurr("movies");
             getSession().selectMovies(getSession().getDatabase());
+
             super.printOnPage();
         } else if (getSession().getNavigation().peek().equals("movies")) {
             getSession().getNavigation().remove();

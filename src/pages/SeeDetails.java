@@ -72,7 +72,6 @@ public class SeeDetails extends Page{
             && getSession().getActionErr() == 1) {
             return;
         }
-
         super.printBasicErrorPage();
     }
 
@@ -83,7 +82,6 @@ public class SeeDetails extends Page{
         if (!getSession().getCurrentMovieList().isEmpty()) {
             for (Movie movie : getSession().getCurrentMovieList()) {
                 if (movie.getName().equals(super.getSession().getAction().getMovie())) {
-                    getSession().setNameCurrMovie(super.getSession().getAction().getMovie());
                     super.printOneMovie(movie);
                     return 1;
                 }
@@ -102,11 +100,13 @@ public class SeeDetails extends Page{
      */
     public void move() {
         if (getSession().getNavigation().isEmpty()) {
+            getSession().setNameCurrMovie(super.getSession().getAction().getMovie());
             if (verifNameMovie() == 1) {
                 getSession().setPageCurr("see details");
                 getSession().setOldFeature("nothing");
             }
         } else if (getSession().getNavigation().peek().equals("see details")) {
+            getSession().setNameCurrMovie(super.getSession().getAction().getMovie());
             getSession().getNavigation().remove();
             if (verifNameMovie() == 1) {
                 getSession().setPageCurr("see details");
