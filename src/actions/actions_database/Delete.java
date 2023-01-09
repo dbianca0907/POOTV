@@ -3,11 +3,19 @@ package actions.actions_database;
 import actions.observer_design.EventManager;
 import actions.strategy_design.Strategy;
 import database.Movie;
-import database.User;
+import database.user_data.User;
 
 import java.util.ArrayList;
 
 public class Delete extends Strategy {
+    /**
+     *  Search in the given list a movie, based on its name.
+     *
+     * @param movies the given list of movies, in this case the list with all the movies from Database
+     * @param nameMovie the name of the movie received from input
+     * @return the found movie, if it is in the Database
+     *         null, otherwise
+     */
 
     public Movie findMovie(final ArrayList<Movie> movies, final  String nameMovie) {
         for (Movie movie : movies) {
@@ -18,7 +26,13 @@ public class Delete extends Strategy {
         return null;
     }
 
-    public void modifyUser(final User currentUser, final String accountType) {
+    /**
+     * Modifying the number of free movies or tokens, in case of deleting a purchased movie.
+     *
+     * @param currentUser the user that is currently logged
+     */
+    public void modifyUser(final User currentUser) {
+        String accountType = currentUser.getCredentials().getAccountType();
         if (accountType.equals("premium")) {
             int numMovies = currentUser.getNumFreePremiumMovies() + 1;
             currentUser.setNumFreePremiumMovies(numMovies);
@@ -28,21 +42,32 @@ public class Delete extends Strategy {
         }
     }
 
+    /**
+     * Deleting the movie if it is found in the user's movie list.
+     *
+     * @param movies user's movie list
+     * @param nameMovie the name of the movie that has to be deleted
+     * @return true, if there was found a movie and was deleted
+     *         false, otherwise
+     */
     public boolean deleteFromList(final ArrayList<Movie> movies, final String nameMovie) {
-        boolean find = false;
         if (movies != null) {
-            ArrayList<Movie> toRemove = new ArrayList<>();
-            for (Movie movie : movies) {
-                if (movie.getName().equals(nameMovie)) {
-                    toRemove.add(movie);
-                    find = true;
-                }
+            Movie movie = findMovie(movies, nameMovie);
+            if (movie != null) {
+                movies.remove(movie);
+                return true;
             }
-            movies.removeAll(toRemove);
         }
-        return find;
+        return false;
     }
 
+    /**
+     * Deleting the movie given from input and notifying the users.
+     *
+     * @return -1, if the movie is already in the Database
+     *          1, if the action was completed successfully
+     */
+    @Override
     public int execute() {
         EventManager eventManager = new EventManager(super.getSession().getDatabase());
         String nameMovie = super.getSession().getAction().getDeletedMovie();
@@ -57,8 +82,7 @@ public class Delete extends Strategy {
         deleteFromList(allMovies, nameMovie);
         for (User user : users) {
             if (deleteFromList(user.getPurchasedMovies(), nameMovie)) {
-                String accountType = user.getCredentials().getAccountType();
-                modifyUser(user, accountType);
+                modifyUser(user);
             }
             deleteFromList(user.getWatchedMovies(), nameMovie);
             deleteFromList(user.getLikedMovies(), nameMovie);

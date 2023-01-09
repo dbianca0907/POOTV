@@ -4,8 +4,9 @@ public class InputUser {
     private InputCredentials credentials;
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return user's credentials
      */
 
     public InputCredentials getCredentials() {
@@ -13,8 +14,9 @@ public class InputUser {
     }
 
     /**
-     * setter
-     * @param credentials
+     * Setter
+     *
+     * @param credentials user's credentials
      */
     public void setCredentials(final InputCredentials credentials) {
         this.credentials = credentials;

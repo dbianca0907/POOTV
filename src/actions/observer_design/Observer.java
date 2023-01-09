@@ -1,7 +1,12 @@
 package actions.observer_design;
 
-import database.Notification;
+import database.user_data.Notification;
 
 public interface Observer {
-    void update(Notification notif);
+    /**
+     * Updating the observer.
+     *
+     * @param notification received from the EventManager
+     */
+    void update(Notification notification);
 }

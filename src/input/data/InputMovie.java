@@ -1,4 +1,5 @@
 package input.data;
+
 import java.util.ArrayList;
 
 // name, year, duration, genres, actors, countriesBanned
@@ -7,98 +8,61 @@ public final class InputMovie {
     private String name;
     private int year;
     private int duration;
-    private  ArrayList<String> genres;
-    private  ArrayList<String> actors;
-    private  ArrayList<String> countriesBanned;
+    private ArrayList<String> genres;
+    private ArrayList<String> actors;
+    private ArrayList<String> countriesBanned;
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return list of movie's genres
      */
-    public  ArrayList<String> getGenres() {
+    public ArrayList<String> getGenres() {
         return genres;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return list of movie's actors
      */
-    public  ArrayList<String> getActors() {
+    public ArrayList<String> getActors() {
         return actors;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return list of countries where the movie is banned
      */
-    public  ArrayList<String> getCountriesBanned() {
+    public ArrayList<String> getCountriesBanned() {
         return countriesBanned;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return movie's name
      */
     public String getName() {
         return name;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return movie's year of production
      */
     public int getYear() {
         return year;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return movie's duration
      */
     public int getDuration() {
         return duration;
-    }
-
-    /**
-     * setter
-     * @param name
-     */
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    /**
-     * setter
-     * @param year
-     */
-    public void setYear(final int year) {
-        this.year = year;
-    }
-
-    /**
-     * setter
-     * @param duration
-     */
-    public void setDuration(final int duration) {
-        this.duration = duration;
-    }
-
-    /**
-     * setter
-     * @param genres
-     */
-    public  void setGenres(final ArrayList<String> genres) {
-        this.genres = genres;
-    }
-
-    /**
-     * setter
-     * @param actors
-     */
-    public  void setActors(final ArrayList<String> actors) {
-        this.actors = actors;
-    }
-
-    /**
-     * setter
-     * @param countriesBanned
-     */
-    public  void setCountriesBanned(final ArrayList<String> countriesBanned) {
-        this.countriesBanned = countriesBanned;
     }
 }

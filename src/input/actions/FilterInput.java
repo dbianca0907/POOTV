@@ -5,33 +5,20 @@ public class FilterInput {
     private ContainsFilter contains;
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return sorting filter
      */
     public SortFilter getSort() {
         return sort;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return contains filter
      */
     public ContainsFilter getContains() {
         return contains;
-    }
-
-    /**
-     * setter
-     * @param sort
-     */
-    public void setSort(final SortFilter sort) {
-        this.sort = sort;
-    }
-
-    /**
-     * setter
-     * @param contains
-     */
-    public void setContains(final ContainsFilter contains) {
-        this.contains = contains;
     }
 }

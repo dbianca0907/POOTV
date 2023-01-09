@@ -1,5 +1,7 @@
 package database;
 
+import database.user_data.Credentials;
+
 import java.util.ArrayList;
 
 
@@ -20,33 +22,64 @@ public class ActionData {
     private Movie addedMovie;
     private String deletedMovie;
 
+    /**
+     * Getter
+     *
+     * @return the name of the movie that will be deleted (from input)
+     */
     public String getDeletedMovie() {
         return deletedMovie;
     }
 
-    public void setDeletedMovie(String deletedMovie) {
+    /**
+     * Setter
+     *
+     * @param deletedMovie the name of the movie that will be deleted
+     */
+    public void setDeletedMovie(final String deletedMovie) {
         this.deletedMovie = deletedMovie;
     }
 
+    /**
+     * Getter
+     *
+     * @return the movie that will be added (from input)
+     */
     public Movie getAddedMovie() {
         return addedMovie;
     }
 
-    public void setAddedMovie(Movie addedMovie) {
+    /**
+     * Setter
+     *
+     * @param addedMovie the movie that will be aded
+     */
+    public void setAddedMovie(final Movie addedMovie) {
         this.addedMovie = addedMovie;
     }
 
+    /**
+     * Getter
+     *
+     * @return the name of the subscribed genre
+     */
     public String getSubscribedGenre() {
         return subscribedGenre;
     }
 
-    public void setSubscribedGenre(String subscribedGenre) {
+    /**
+     * Setter
+     *
+     * @param subscribedGenre the name of the subscribed genre
+     */
+    public void setSubscribedGenre(final String subscribedGenre) {
         this.subscribedGenre = subscribedGenre;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the movie's rating
      */
 
     public String getRating() {
@@ -54,184 +87,207 @@ public class ActionData {
     }
 
     /**
-     * setter
-     * @param rating
+     * Setter
+     *
+     * @param rating the movie's rating
      */
     public void setRating(final String rating) {
         this.rating = rating;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return movie's duration
      */
     public String getDuration() {
         return duration;
     }
 
     /**
-     * setter
-     * @param duration
+     * Setter
+     *
+     * @param duration movie's duration
      */
     public void setDuration(final String duration) {
         this.duration = duration;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the list of actors from a movie
      */
     public ArrayList<String> getActors() {
         return actors;
     }
 
     /**
-     * setter
-     * @param actors
+     * Setter
+     *
+     * @param actors the list of actors from a movie
      */
     public void setActors(final ArrayList<String> actors) {
         this.actors = actors;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the movie's list of genre
      */
     public ArrayList<String> getGenre() {
         return genre;
     }
 
     /**
-     * setter
-     * @param genre
+     * Setter
+     *
+     * @param genre the movie's list of genre
      */
     public void setGenre(final ArrayList<String> genre) {
         this.genre = genre;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return type of the user's account
      */
     public String getType() {
         return type;
     }
 
     /**
-     * setter
-     * @param type
+     * Setter
+     *
+     * @param type type of the user's account
      */
     public void setType(final String type) {
         this.type = type;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the name of a page
      */
     public String getPage() {
         return page;
     }
 
     /**
-     * setter
-     * @param page
+     * Setter
+     *
+     * @param page the name of a page
      */
     public void setPage(final String page) {
         this.page = page;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the feature from the input
      */
     public String getFeature() {
         return feature;
     }
 
     /**
-     * setter
-     * @param feature
+     * Setter
+     *
+     * @param feature the feature from the input
      */
     public void setFeature(final String feature) {
         this.feature = feature;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the user's credentials
      */
     public Credentials getCredentials() {
         return credentials;
     }
 
     /**
-     * setter
-     * @param credentials
+     * Setter
+     *
+     * @param credentials the user's credentials
      */
     public void setCredentials(final Credentials credentials) {
         this.credentials = credentials;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the string for the search action (input)
      */
     public String getStartsWith() {
         return startsWith;
     }
 
     /**
-     * setter
-     * @param startsWith
+     * Setter
+     *
+     * @param startsWith the string for the search action (input)
      */
     public void setStartsWith(final String startsWith) {
         this.startsWith = startsWith;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the movie received from input
      */
     public String getMovie() {
         return movie;
     }
 
     /**
-     * setter
-     * @param movie
+     * Setter
+     *
+     * @param movie the movie received from input
      */
     public void setMovie(final String movie) {
         this.movie = movie;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return number of tokens that need to be purchased (from input)
      */
     public int getCount() {
         return count;
     }
 
     /**
-     * setter
-     * @param count
+     * Setter
+     *
+     * @param count number of tokens that need to be purchased (from input)
      */
     public void setCount(final int count) {
         this.count = count;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return The movie rating (from input)
      */
     public double getRate() {
         return rate;
     }
 
     /**
-     * setter
-     * @param rate
+     * Setter
+     *
+     * @param rate The movie rating (from input)
      */
     public void setRate(final double rate) {
         this.rate = rate;

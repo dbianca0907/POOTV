@@ -1,7 +1,6 @@
 package database;
 
 import java.util.ArrayList;
-import java.text.DecimalFormat;
 import java.util.HashMap;
 
 public class Movie {
@@ -9,22 +8,22 @@ public class Movie {
     private int year;
     private int duration;
     private ArrayList<String> genres;
-    private  ArrayList<String> actors;
-    private  ArrayList<String> countriesBanned;
-   // private ArrayList<Double> userRates;
+    private ArrayList<String> actors;
+    private ArrayList<String> countriesBanned;
     private HashMap<String, Double> userRates;
     private int numLikes = 0;
     private double rating = 0.00;
     private int numRatings = 0;
 
     /**
-     * constructor
-     * @param name
-     * @param year
-     * @param duration
-     * @param genres
-     * @param actors
-     * @param countriesBanned
+     * Constructor
+     *
+     * @param name movie's name
+     * @param year movie's year of production
+     * @param duration  movie's duration
+     * @param genres movie's list of genres
+     * @param actors movie's list of actors
+     * @param countriesBanned movie's countries that is banned
      */
     public Movie(final String name, final int year, final int duration,
                  final ArrayList<String> genres, final ArrayList<String> actors,
@@ -39,146 +38,173 @@ public class Movie {
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return hashmap that contains the user's names and their ratings for the movie
      */
     public HashMap<String, Double> getUserRates() {
         return userRates;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return number of likes
      */
     public int getNumLikes() {
         return numLikes;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the calculated rating
      */
     public double getRating() {
         return rating;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the number of ratings
      */
     public int getNumRatings() {
         return numRatings;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the list of genres
      */
-    public  ArrayList<String> getGenres() {
+    public ArrayList<String> getGenres() {
         return genres;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the list of actors
      */
-    public  ArrayList<String> getActors() {
+    public ArrayList<String> getActors() {
         return actors;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the countries where the movie is banned
      */
-    public  ArrayList<String> getCountriesBanned() {
+    public ArrayList<String> getCountriesBanned() {
         return countriesBanned;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return movie's name
      */
     public String getName() {
         return name;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return movie's year of production
      */
     public int getYear() {
         return year;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return movie's duration
      */
     public int getDuration() {
         return duration;
     }
 
     /**
-     * setter
-     * @param numLikes
+     * Setter
+     *
+     * @param numLikes number of likes
      */
     public void setNumLikes(final int numLikes) {
         this.numLikes = numLikes;
     }
 
     /**
-     * setter
-     * @param rating
+     * Setter
+     *
+     * @param rating movie's calculated rating
      */
     public void setRating(final double rating) {
         this.rating = rating;
     }
 
     /**
-     * setter
-     * @param numRatings
+     * Setter
+     *
+     * @param numRatings movie's number of ratings
      */
     public void setNumRatings(final int numRatings) {
         this.numRatings = numRatings;
     }
 
     /**
-     * setter
-     * @param name
+     * Setter
+     *
+     * @param name movie's name
      */
     public void setName(final String name) {
         this.name = name;
     }
 
     /**
-     * setter
-     * @param year
+     * Setter
+     *
+     * @param year movie's year of production
      */
     public void setYear(final int year) {
         this.year = year;
     }
 
     /**
-     * setter
-     * @param duration
+     * Setter
+     *
+     * @param duration movie's duration
      */
     public void setDuration(final int duration) {
         this.duration = duration;
     }
 
     /**
-     * setter
-     * @param genres
+     * Setter
+     *
+     * @param genres movie's list of genres
      */
-    public  void setGenres(final ArrayList<String> genres) {
+    public void setGenres(final ArrayList<String> genres) {
         this.genres = genres;
     }
 
     /**
-     * setter
-     * @param actors
+     * Setter
+     *
+     * @param actors movie's list of actors
      */
-    public  void setActors(final ArrayList<String> actors) {
+    public void setActors(final ArrayList<String> actors) {
         this.actors = actors;
     }
 
     /**
-     * setter
-     * @param countriesBanned
+     * Setter
+     *
+     * @param countriesBanned movie's list of countries where is not allowed
      */
-    public  void setCountriesBanned(final ArrayList<String> countriesBanned) {
+    public void setCountriesBanned(final ArrayList<String> countriesBanned) {
         this.countriesBanned = countriesBanned;
     }
 }

@@ -1,8 +1,8 @@
 package input;
 import database.ActionData;
-import database.Credentials;
+import database.user_data.Credentials;
 import database.Movie;
-import database.User;
+import database.user_data.User;
 import input.actions.ActionsInput;
 import input.data.InputCredentials;
 import input.data.InputData;
@@ -13,11 +13,11 @@ import java.util.ArrayList;
 
 public class Parsing {
     /**
-     * metoda de parsare a actiunilor din clasa de input in clasa pe care o folosesc
-     * pentru comenzi
-     * @param input
-     * @return
-     * */
+     * Parsing all the action's information from input to "ActionData" class.
+     *
+     * @param input information from input
+     * @return the new created object
+     */
     public static ActionData parseAction(final ActionsInput input) {
         ActionData actionData = new ActionData();
         actionData.setType(input.getType());
@@ -31,7 +31,8 @@ public class Parsing {
             if (input.getFeature().equals("register")) {
                 actionData.setCredentials(new Credentials(input.getCredentials().getName(),
                         input.getCredentials().getPassword(),
-                        input.getCredentials().getAccountType(), input.getCredentials().getCountry(),
+                        input.getCredentials().getAccountType(),
+                        input.getCredentials().getCountry(),
                         input.getCredentials().getBalance()));
             }
             if (input.getFeature().equals("login")) {
@@ -82,9 +83,10 @@ public class Parsing {
     }
 
     /**
-     * metoda de oarsare a userilor din calsa de la input, in clasa folosita pentru comenzi
-     * @param input
-     * @return
+     * Parsing all .
+     *
+     * @param input information from input
+     * @return the new created object
      */
     public static ArrayList<User> parseUsers(final InputData input) {
         ArrayList<InputUser> usersInput = input.getUsers();

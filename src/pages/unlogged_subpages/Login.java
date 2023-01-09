@@ -1,6 +1,5 @@
 package pages.unlogged_subpages;
 
-import backup_actions.SnapshotAction;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import database.Session;
 import pages.Page;
@@ -52,8 +51,5 @@ public class Login extends Page {
             getSession().getNavigation().remove();
             super.printBasicErrorPage();
         }
-    }
-    public SnapshotAction createSnapshot() {
-        return new SnapshotAction(super.getSession());
     }
 }

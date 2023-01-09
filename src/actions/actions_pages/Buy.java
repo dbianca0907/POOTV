@@ -7,15 +7,18 @@ public class Buy extends Strategy {
     public static final int minTokens = 10;
 
     /**
-     * metoda care cumpara tokens si contul premium
-     * @return 1, daca ctiunea s-a realizat cu succes,
-     *  -1, daca actiunea nu a putut fi executata
-     *  0 daca campul feature nu era cel corect
+     * Buying tokens or premium account.
+     *
+     * @return 1, if the action was completed successfully
+     *        -1, if an error occured
+     *        0, otherwise
      */
+    @Override
     public int execute() {
         int count = super.getSession().getAction().getCount();
         int nrTokensUser = super.getSession().getCurrentUser().getTokensCount();
         int nrBalance = super.getSession().getCurrentUser().getCredentials().getBalance();
+
         if (super.getSession().getAction().getFeature().equals("buy tokens")) {
             if (nrBalance < count) {
                 return -1;
@@ -27,7 +30,8 @@ public class Buy extends Strategy {
             if (nrTokensUser < minTokens) {
                 return -1;
             }
-            if (super.getSession().getCurrentUser().getCredentials().getAccountType().equals("premium")) {
+            String type = super.getSession().getCurrentUser().getCredentials().getAccountType();
+            if (type.equals("premium")) {
                 return -1;
             }
             super.getSession().getCurrentUser().setTokensCount(nrTokensUser - minTokens);

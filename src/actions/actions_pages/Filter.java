@@ -9,12 +9,11 @@ import java.util.Collections;
 public class Filter extends Strategy {
 
     /**
-     * functie care seteaza filmele, prima oara in functie de Duration
-     * apoi dupa rating
-     * @param movies lista curenta de filme
-     * @param order ordinea in care vrem sa fie sortata lista
-     * @return lista curenta de filme, pentru cazul in care valorile erau egale,
-     *       sau lista sortata dupa rating
+     * Sorting the movies based on movie's duration.
+     *
+     * @param movies the current list of movies
+     * @param order  increasing or decreasing order
+     * @return the sorted list of movies
      */
     public ArrayList<Movie> sortByDuration(final ArrayList<Movie> movies, final String order) {
         ArrayList<Movie> sortedMovies = new ArrayList<>();
@@ -27,8 +26,8 @@ public class Filter extends Strategy {
         if (order.equals("increasing")) {
             Collections.sort(duration);
         } else {
-             Collections.sort(duration, Collections.reverseOrder());
-        }                           
+            Collections.sort(duration, Collections.reverseOrder());
+        }
         for (int i = 0; i < duration.size(); i++) {
             for (Movie movie : copy) {
                 if (movie.getDuration() == duration.get(i)) {
@@ -38,16 +37,16 @@ public class Filter extends Strategy {
                 }
             }
         }
-        
+
         return sortedMovies;
     }
 
     /**
-     * functie care sorteaza in functie de numarul de rating-uri
-     * @param movies liste de filme curenta
-     * @param order ordinea in care vrem sa se realizeze sortarea
-     * @return lista curenta de filme, pentru cazul in care valorile erau egale,
-     *          sau lista sortata dupa rating
+     * Sorting the movies based on movie's rating.
+     *
+     * @param movies the current list of movies
+     * @param order  increasing or decreasing order
+     * @return the sorted list of movies
      */
     public ArrayList<Movie> sortByRate(final ArrayList<Movie> movies, final String order) {
         ArrayList<Movie> sortedMovies = new ArrayList<>();
@@ -76,48 +75,48 @@ public class Filter extends Strategy {
     }
 
     /**
-     * metoda pentru a pastra filmele care contin actorii si tipul filmului din input
-     * se trateaza cazul in care se doreste filtrarea filmelor dupa ambele criterii
-     * @param movies lista curenta de filme
-     * @param actors lista de actori din input
-     * @param genres lista de categorii ale filmului din input
-     * @return lista de filme filtrata
+     * Applying both filters on the list.
+     *
+     * @param movies the list of available movies for the current user
+     * @param actors the list of actors from input
+     * @param genres the list of genres from input
+     * @return the modified list of movies
      */
 
     public ArrayList<Movie> containsAll(final ArrayList<Movie> movies,
                                         final ArrayList<String> actors,
                                         final ArrayList<String> genres) {
-       boolean contains;
+        boolean contains;
         ArrayList<Movie> filteredMovies = new ArrayList<>();
-            for (Movie movie : movies) {
-                contains = true;
-                for (String actor : actors) {
-                    if (!movie.getActors().contains(actor)) {
-                        contains = false;
-                        break;
-                    }
-                }
-                for (String genre : genres) {
-                    if (!movie.getGenres().contains(genre)) {
-                        contains = false;
-                        break;
-                    }
-                }
-                if (contains) {
-                    filteredMovies.add(movie);
+        for (Movie movie : movies) {
+            contains = true;
+            for (String actor : actors) {
+                if (!movie.getActors().contains(actor)) {
+                    contains = false;
+                    break;
                 }
             }
+            for (String genre : genres) {
+                if (!movie.getGenres().contains(genre)) {
+                    contains = false;
+                    break;
+                }
+            }
+            if (contains) {
+                filteredMovies.add(movie);
+            }
+        }
 
         return filteredMovies;
     }
 
     /**
-     * metoda pentru a trata cazul de filtrare in functie de criterii,
-     * daca primim doar unul dintre array-uri la input
-     * @param movies lista curenta de filme
-     * @param atribute criteriul dupa care dorim filtrarea (actors/genre)
-     * @param criteria arrayList-ul primit de lainput(actors/genres)
-     * @return lista de filme filtrata
+     * Applying one filter on the list.
+     *
+     * @param movies   the list of available movies for the current user
+     * @param atribute the type of filter
+     * @param criteria the list of actors or genres from input
+     * @return the modified list of movies
      */
     public ArrayList<Movie> containsOneOfThem(final ArrayList<Movie> movies, final String atribute,
                                               final ArrayList<String> criteria) {
@@ -126,11 +125,11 @@ public class Filter extends Strategy {
             int numCr = 0;
             for (String element : criteria) {
                 if (atribute.equals("actors")
-                    && movie.getActors().contains(element)) {
+                        && movie.getActors().contains(element)) {
                     numCr++;
                 }
                 if (atribute.equals("genre")
-                    && movie.getGenres().contains(element) ) {
+                        && movie.getGenres().contains(element)) {
                     numCr++;
                 }
             }
@@ -142,31 +141,35 @@ public class Filter extends Strategy {
     }
 
     /**
-     * functia care filtreaza lista curenta a userului logat din session
+     * Applying filters on the movie lists
+     *
+     * @return 1, there are no errors to occur
      */
+    @Override
     public int execute() {
-        if (super.getSession().getAction().getActors() != null
-                && super.getSession().getAction().getGenre() != null) {
-            super.getSession().setCurrentMovieList(containsAll(super.getSession().getUnbannedMovies(),
-                    super.getSession().getAction().getActors(),
-                    super.getSession().getAction().getGenre()));
+
+        if (getSession().getAction().getActors() != null
+                && getSession().getAction().getGenre() != null) {
+            getSession().setCurrentMovieList(containsAll(getSession().getUnbannedMovies(),
+                    getSession().getAction().getActors(),
+                    getSession().getAction().getGenre()));
         } else {
-            if (super.getSession().getAction().getActors() != null) {
-                super.getSession().setCurrentMovieList(containsOneOfThem(super.getSession().getUnbannedMovies(),
-                        "actors", super.getSession().getAction().getActors()));
+            if (getSession().getAction().getActors() != null) {
+                getSession().setCurrentMovieList(containsOneOfThem(getSession().getUnbannedMovies(),
+                        "actors", getSession().getAction().getActors()));
             }
-            if (super.getSession().getAction().getGenre() != null) {
-                super.getSession().setCurrentMovieList(containsOneOfThem(super.getSession().getUnbannedMovies(),
-                        "genre", super.getSession().getAction().getGenre()));
+            if (getSession().getAction().getGenre() != null) {
+                getSession().setCurrentMovieList(containsOneOfThem(getSession().getUnbannedMovies(),
+                        "genre", getSession().getAction().getGenre()));
             }
         }
-        if (super.getSession().getAction().getRating() != null) {
-            super.getSession().setCurrentMovieList(sortByRate(super.getSession().getCurrentMovieList(),
-                    super.getSession().getAction().getRating()));
+        if (getSession().getAction().getRating() != null) {
+            getSession().setCurrentMovieList(sortByRate(getSession().getCurrentMovieList(),
+                    getSession().getAction().getRating()));
         }
-        if (super.getSession().getAction().getDuration() != null) {
-            super.getSession().setCurrentMovieList(sortByDuration(super.getSession().getCurrentMovieList(),
-                    super.getSession().getAction().getDuration()));
+        if (getSession().getAction().getDuration() != null) {
+            getSession().setCurrentMovieList(sortByDuration(getSession().getCurrentMovieList(),
+                    getSession().getAction().getDuration()));
         }
         return 1;
     }

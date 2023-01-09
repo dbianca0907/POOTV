@@ -1,6 +1,5 @@
 package pages;
 
-import backup_actions.SnapshotAction;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import database.Movie;
 import database.Session;
@@ -22,9 +21,6 @@ public class Page {
         this.session = session;
     }
 
-    public SnapshotAction createSnapshot() {
-        return new SnapshotAction(getSession());
-    }
 
     /**
      * verifica daca actiunea precizata in input este cea specifica paginii

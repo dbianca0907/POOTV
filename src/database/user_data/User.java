@@ -1,11 +1,13 @@
-package database;
+package database.user_data;
 
 import actions.observer_design.Observer;
+import database.Movie;
 
 import java.util.ArrayList;
+
 public class User implements Observer {
     boolean isNotified = false;
-   private Credentials credentials;
+    private Credentials credentials;
     private ArrayList<Movie> purchasedMovies;
     private ArrayList<Movie> watchedMovies;
     private ArrayList<Movie> likedMovies;
@@ -16,43 +18,66 @@ public class User implements Observer {
     private int numFreePremiumMovies;
 
     /**
-     * constructor
-     * @param cr
+     * Constructor
+     *
+     * @param cr user's credentials
      */
-    public User(Credentials cr) {
+    public User(final Credentials cr) {
         credentials = cr;
         tokensCount = 0;
         numFreePremiumMovies = 15;
     }
 
-    public void update (Notification notification) {
+    /**
+     * Update the user (observer design pattern).
+     *
+     * @param notification received from the EventManager
+     */
+    public void update(Notification notification) {
         getNotifications().add(notification);
-        setNotified(true);
     }
 
+    /**
+     * Getter
+     *
+     * @return the variable that show if the user was notified or not
+     */
     public boolean isNotified() {
         return isNotified;
     }
 
-    public void setNotified(boolean notified) {
+    /**
+     * Getter
+     *
+     * @param notified the variable that show if the user was notified or not
+     */
+    public void setNotified(final boolean notified) {
         isNotified = notified;
     }
 
     /**
      * getter
+     *
      * @return
      */
     public Credentials getCredentials() {
         return credentials;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return number of tokens
      */
     public int getTokensCount() {
         return tokensCount;
     }
 
+    /**
+     * Getter
+     *
+     * @return the list of user's notifications
+     */
     public ArrayList<Notification> getNotifications() {
         if (notifications == null) {
             setNotifications(new ArrayList<>());
@@ -61,6 +86,20 @@ public class User implements Observer {
         return notifications;
     }
 
+    /**
+     * Setter
+     *
+     * @param notifications the list of user's notifications
+     */
+    public void setNotifications(ArrayList<Notification> notifications) {
+        this.notifications = notifications;
+    }
+
+    /**
+     * Getter
+     *
+     * @return the subscribed genres
+     */
     public ArrayList<String> getSubscribedGenres() {
         if (subscribedGenres == null) {
             setSubscribedGenres(new ArrayList<>());
@@ -69,49 +108,55 @@ public class User implements Observer {
         return subscribedGenres;
     }
 
+    /**
+     * Setter
+     *
+     * @param subscribedGenres the subscribed genres
+     */
     public void setSubscribedGenres(ArrayList<String> subscribedGenres) {
         this.subscribedGenres = subscribedGenres;
     }
 
-    public void setNotifications(ArrayList<Notification> notifications) {
-        this.notifications = notifications;
-    }
-
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return number of free movies
      */
     public int getNumFreePremiumMovies() {
         return numFreePremiumMovies;
     }
 
     /**
-     * setter
-     * @param tokensCount
+     * Setter
+     *
+     * @param tokensCount number of tokens
      */
     public void setTokensCount(final int tokensCount) {
         this.tokensCount = tokensCount;
     }
 
     /**
-     * setter
-     * @param numFreePremiumMovies
+     * Setter
+     *
+     * @param numFreePremiumMovies number of free movies
      */
     public void setNumFreePremiumMovies(final int numFreePremiumMovies) {
         this.numFreePremiumMovies = numFreePremiumMovies;
     }
 
     /**
-     * setter
-     * @param credentials
+     * Setter
+     *
+     * @param credentials number of credentials
      */
     public void setCredentials(final Credentials credentials) {
         this.credentials = credentials;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return list of watched movies
      */
     public ArrayList<Movie> getWatchedMovies() {
         if (watchedMovies == null) {
@@ -122,8 +167,9 @@ public class User implements Observer {
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return list of liked movies
      */
     public ArrayList<Movie> getLikedMovies() {
         if (likedMovies == null) {
@@ -134,8 +180,9 @@ public class User implements Observer {
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return list of rated movies
      */
     public ArrayList<Movie> getRatedMovies() {
         if (ratedMovies == null) {
@@ -146,8 +193,9 @@ public class User implements Observer {
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return listo of purchased movies
      */
     public ArrayList<Movie> getPurchasedMovies() {
         if (purchasedMovies == null) {
@@ -158,32 +206,36 @@ public class User implements Observer {
     }
 
     /**
-     * setter
-     * @param userMovies
+     * Setter
+     *
+     * @param userMovies list of purchased movies
      */
     public void setPurchasedMovies(final ArrayList<Movie> userMovies) {
         this.purchasedMovies = userMovies;
     }
 
     /**
-     * setter
-     * @param watchedMovies
+     * Setter
+     *
+     * @param watchedMovies list of watched movies
      */
     public void setWatchedMovies(final ArrayList<Movie> watchedMovies) {
         this.watchedMovies = watchedMovies;
     }
 
     /**
-     * setter
-     * @param likedMovies
+     * Setter
+     *
+     * @param likedMovies list of liked movies
      */
     public void setLikedMovies(final ArrayList<Movie> likedMovies) {
         this.likedMovies = likedMovies;
     }
 
     /**
-     * setter
-     * @param ratedMovies
+     * Setter
+     *
+     * @param ratedMovies list of rated movies
      */
     public void setRatedMovies(final ArrayList<Movie> ratedMovies) {
         this.ratedMovies = ratedMovies;

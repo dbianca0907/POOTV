@@ -7,33 +7,21 @@ public class ContainsFilter {
     private ArrayList<String> genre;
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return list of actors
      */
     public ArrayList<String> getActors() {
         return actors;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return list of genres
      */
     public ArrayList<String> getGenre() {
         return genre;
     }
 
-    /**
-     * setter
-     * @param actors
-     */
-    public void setActors(final ArrayList<String> actors) {
-        this.actors = actors;
-    }
-
-    /**
-     * setter
-     * @param genre
-     */
-    public void setGenre(final ArrayList<String> genre) {
-        this.genre = genre;
-    }
 }

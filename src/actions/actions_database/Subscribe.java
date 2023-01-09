@@ -7,15 +7,21 @@ import java.util.ArrayList;
 
 public class Subscribe extends Strategy {
 
-
+    /**
+     * Subscribing the user to a specific genre.
+     *
+     * @return 1, if the action was completed successfully
+     *        -1, if the user is already subscribed to that genre or
+     *            the lists of movies that aren't banned is empty
+     */
+    @Override
     public int execute() {
         String genre = super.getSession().getAction().getSubscribedGenre();
         ArrayList<Movie> movies = super.getSession().getUnbannedMovies();
         ArrayList<String> userSubscriptions = super.getSession().getCurrentUser().getSubscribedGenres();
 
         if (userSubscriptions.contains(genre)
-            || movies ==null) {
-            System.out.println("a returnat in primul if eroare in sub");
+            || movies == null) {
             return -1;
         }
 
@@ -27,7 +33,6 @@ public class Subscribe extends Strategy {
                 }
             }
         }
-        System.out.println("a returnat in al doilea if eroare in sub");
 
         return -1;
     }

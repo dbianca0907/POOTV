@@ -1,32 +1,38 @@
 package actions.actions_pages;
 
 import actions.strategy_design.Strategy;
-import database.Credentials;
-import database.User;
+import database.user_data.Credentials;
+import database.user_data.User;
 
 public class Register extends Strategy {
 
     /**
-     * se inregistreaza noul user, dupa ce este verificat sa nu existe deja in baza de date
-     * @return -1, daca este deja inregistrat in baza de date
-     *          1, daca inregistrarea s-a realizat cu succes
+     * Register a new user in the Database.
+     * Verifying if it is already registered.
+     *
+     * @return 1, if the action was completed successfully
+     *        -1, otherwise
      */
+    @Override
     public int execute() {
-        String name = super.getSession().getAction().getCredentials().getName();
-        String password = super.getSession().getAction().getCredentials().getPassword();
+        String name = getSession().getAction().getCredentials().getName();
+        String password = getSession().getAction().getCredentials().getPassword();
 
-        if (super.getSession().getDatabase().getUserHashMap().containsKey(name + password)) {
+        // The key was made by the user's name and its password
+
+        if (getSession().getDatabase().getUserHashMap().containsKey(name + password)) {
             return -1;
         }
-        Credentials input = super.getSession().getAction().getCredentials();
+        
+        Credentials input = getSession().getAction().getCredentials();
         Credentials newCr = new Credentials(input.getName(), input.getPassword(),
                                             input.getAccountType(),
                                             input.getCountry(), input.getBalance());
         User newUser = new User(newCr);
-        super.getSession().getDatabase().getUsers().add(newUser);
-        super.getSession().getDatabase().addUsers(newUser);
-        super.getSession().setCurrentUser(newUser);
-        super.getSession().setLogged(true);
+        getSession().getDatabase().getUsers().add(newUser);
+        getSession().getDatabase().addUsers(newUser);
+        getSession().setCurrentUser(newUser);
+        getSession().setLogged(true);
         return 1;
     }
 }

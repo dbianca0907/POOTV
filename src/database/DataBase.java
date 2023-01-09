@@ -1,5 +1,7 @@
 package database;
 
+import database.user_data.User;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,9 +12,10 @@ public class DataBase {
     private ArrayList<Movie> allMovies;
 
     /**
-     * constructor
-     * @param users
-     * @param allMovies
+     * Constructor for the server's Database.
+     *
+     * @param users     all users from input
+     * @param allMovies all movies from input
      */
     public DataBase(final ArrayList<User> users,
                     final ArrayList<Movie> allMovies) {
@@ -24,42 +27,40 @@ public class DataBase {
     }
 
     /**
-     * functie de adaugat userii in hashmap
-     * @param newUser
+     * Adding all the users in a hashmap
+     *
+     * @param newUser new user from input
      */
     public void addUsers(final User newUser) {
-            String key = newUser.getCredentials().getName()
-                        + newUser.getCredentials().getPassword();
-            getUserHashMap().put(key, newUser);
+        String key = newUser.getCredentials().getName()
+                + newUser.getCredentials().getPassword();
+        getUserHashMap().put(key, newUser);
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the hashmap of users
      */
     public HashMap<String, User> getUserHashMap() {
         return userHashMap;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the list of all  users
      */
     public ArrayList<User> getUsers() {
         return users;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the list of all movies
      */
     public ArrayList<Movie> getAllMovies() {
         return allMovies;
-    }
-
-    /**
-     * setter
-     * @param users
-     */
-    public void setUsers(final ArrayList<User> users) {
-        this.users = users;
     }
 }

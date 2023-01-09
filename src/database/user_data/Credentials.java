@@ -1,4 +1,4 @@
-package database;
+package database.user_data;
 
 public class Credentials {
     private String name;
@@ -8,12 +8,13 @@ public class Credentials {
     private int balance;
 
     /**
-     * constructor
-     * @param name
-     * @param password
-     * @param accountType
-     * @param country
-     * @param balance
+     * Constructor
+     *
+     * @param name user's name
+     * @param password user's password
+     * @param accountType user's type of account
+     * @param country user's country
+     * @param balance user's balance
      */
     public Credentials(final String name,
                        final String password,
@@ -28,72 +29,90 @@ public class Credentials {
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return user's name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return user's password
      */
     public String getPassword() {
         return password;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return user's type of account
      */
     public String getAccountType() {
         return accountType;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return user's country
      */
     public String getCountry() {
         return country;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return user's balance
      */
     public int getBalance() {
         return balance;
     }
+
     /**
-     * setter
-     * @return
+     * Setter
+     *
+     * @return user's name
      */
     public void setName(final String name) {
         this.name = name;
     }
+
     /**
-     * setter
-     * @return
+     * Setter
+     *
+     * @return user's password
      */
     public void setPassword(final String password) {
         this.password = password;
     }
+
     /**
-     * setter
-     * @return
+     * Setter
+     *
+     * @return user's type of account
      */
     public void setAccountType(final String accountType) {
         this.accountType = accountType;
     }
+
     /**
-     * setter
-     * @return
+     * Setter
+     *
+     * @return user's country
      */
     public void setCountry(final String country) {
         this.country = country;
     }
+
     /**
-     * setter
-     * @return
+     * Setter
+     *
+     * @return user's balance
      */
     public void setBalance(final int balance) {
         this.balance = balance;

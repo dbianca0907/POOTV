@@ -1,5 +1,7 @@
 package database;
 
+import database.user_data.User;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -11,7 +13,6 @@ public class Session {
     private int actionErr;
     private User currentUser;
     private ArrayList<Movie> startWithMovies;
-
     private ArrayList<Movie> currentMovieList;
     private ArrayList<Movie> unbannedMovies;
     private String feature;
@@ -23,25 +24,11 @@ public class Session {
     private ActionData action;
     private String pageCurr;
 
-    /**
-     * getter
-     * @return
-     */
-    public String getPageCurr() {
-        return pageCurr;
-    }
 
     /**
-     * setez pagina curenta
-     * @param pageCurr
-     */
-    public void setPageCurr(final String pageCurr) {
-        this.pageCurr = pageCurr;
-    }
-
-    /**
-     * constructor pentru sesiunea curenta
-     * @param database
+     * Constructor for the current session
+     *
+     * @param database the server's Database
      */
     public Session(final DataBase database) {
         this.database = database;
@@ -55,9 +42,28 @@ public class Session {
     }
 
     /**
-     * functie care seteaza lista curenta de filme, in functie de tara de origine
-     * userului si tara in care filmul este banat
-     * @param dataBase
+     * Getter
+     *
+     * @return name of the current page
+     */
+    public String getPageCurr() {
+        return pageCurr;
+    }
+
+    /**
+     * Setter
+     *
+     * @param pageCurr name of the current page
+     */
+    public void setPageCurr(final String pageCurr) {
+        this.pageCurr = pageCurr;
+    }
+
+
+    /**
+     * Create the list of movies that can be watched by the current logged user.
+     *
+     * @param dataBase the server's Database
      */
     public void selectMovies(final DataBase dataBase) {
         ArrayList<Movie> newCurrList = new ArrayList<Movie>();
@@ -71,133 +77,181 @@ public class Session {
         setUnbannedMovies(newCurrList);
     }
 
+    /**
+     * Getter
+     *
+     * @return list of pages that create an error for a back action
+     */
     public ArrayList<String> getBackErrors() {
         return backErrors;
     }
 
+    /**
+     * Getter
+     *
+     * @return the stack that contains all the history of navigation through pages
+     */
     public Stack<String> getHistory() {
         return history;
     }
 
-    public void setHistory(Stack<String> history) {
-        this.history = history;
-    }
-
+    /**
+     * Getter
+     *
+     * @return -1, 0, 1 depends on the situation, after executing an action
+     */
     public int getActionErr() {
         return actionErr;
     }
 
+    /**
+     * Setter
+     *
+     * @param actionErr the type of error after executing an action
+     */
     public void setActionErr(int actionErr) {
         this.actionErr = actionErr;
     }
 
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the name of the current movie's name (see details)
      */
     public String getNameCurrMovie() {
         return nameCurrMovie;
     }
 
     /**
-     * setter
-     * @param nameCurrMovie
+     * Setter
+     *
+     * @param nameCurrMovie the name of the current movie's name, from input (see details)
      */
     public void setNameCurrMovie(final String nameCurrMovie) {
         this.nameCurrMovie = nameCurrMovie;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the queue that helps navigate through pages
      */
     public Queue<String> getNavigation() {
         return navigation;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the current list of movies
      */
     public ArrayList<Movie> getCurrentMovieList() {
         return currentMovieList;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the list of movies resulted after search action was executed
      */
     public ArrayList<Movie> getStartWithMovies() {
         return startWithMovies;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the action from the input
      */
     public ActionData getAction() {
         return action;
     }
 
     /**
-     * setter
-     * @param currentMovieList
+     * Setter
+     *
+     * @param currentMovieList  the current list of movies
      */
     public void setCurrentMovieList(final ArrayList<Movie> currentMovieList) {
         this.currentMovieList = currentMovieList;
     }
 
+    /**
+     * Getter
+     *
+     * @return the feature of the previous action
+     */
     public String getOldFeature() {
         return oldFeature;
     }
 
-    public void setOldFeature(String oldFeature) {
+    /**
+     * Setter
+     *
+     * @param oldFeature he feature of the previous action
+     */
+    public void setOldFeature(final String oldFeature) {
         this.oldFeature = oldFeature;
     }
 
     /**
-     * setter
-     * @param action
+     * Setter
+     *
+     * @param action the action from the input
      */
     public void setAction(final ActionData action) {
         this.action = action;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the server's Database
      */
     public DataBase getDatabase() {
         return database;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the variable that shows if a user is logged or not
      */
     public boolean isLogged() {
         return isLogged;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the current action's feature (from input)
      */
     public String getFeature() {
         return feature;
     }
 
     /**
-     * setter
-     * @param feature
+     * Setter
+     *
+     * @param feature the current action's feature (from input)
      */
     public void setFeature(final String feature) {
         this.feature = feature;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the logged user
      */
     public User getCurrentUser() {
         return currentUser;
     }
 
     /**
-     * setter
-     * @param currentUser
+     * Setter
+     *
+     * @param currentUser the logged user
      */
     public void setCurrentUser(final User currentUser) {
         this.currentUser = currentUser;
@@ -205,18 +259,29 @@ public class Session {
     }
 
     /**
-     * setter
-     * @param logged
+     * Setter
+     *
+     * @param logged the variable that shows if a user is logged or not
      */
     public void setLogged(final boolean logged) {
         isLogged = logged;
     }
 
+    /**
+     * Getter
+     *
+     * @return the list of movies that can be watched by the current logged user
+     */
     public ArrayList<Movie> getUnbannedMovies() {
         return unbannedMovies;
     }
 
-    public void setUnbannedMovies(ArrayList<Movie> unbannedMovies) {
+    /**
+     * Setter
+     *
+     * @param unbannedMovies the list of movies that can be watched by the current logged user
+     */
+    public void setUnbannedMovies(final ArrayList<Movie> unbannedMovies) {
         this.unbannedMovies = unbannedMovies;
     }
 }

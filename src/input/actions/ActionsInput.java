@@ -1,4 +1,5 @@
 package input.actions;
+
 import input.data.InputCredentials;
 import input.data.InputMovie;
 
@@ -16,147 +17,111 @@ public class ActionsInput {
     private InputMovie addedMovie;
     private String deletedMovie;
 
+    /**
+     * Getter
+     *
+     * @return movie's name that will be deleted
+     */
     public String getDeletedMovie() {
         return deletedMovie;
     }
 
-    public void setDeletedMovie(String deletedMovie) {
-        this.deletedMovie = deletedMovie;
-    }
-
+    /**
+     * Getter
+     *
+     * @return the movie that will be added
+     */
     public InputMovie getAddedMovie() {
         return addedMovie;
     }
 
-    public void setAddedMovie(InputMovie addedMovie) {
-        this.addedMovie = addedMovie;
-    }
-
+    /**
+     * Getter
+     *
+     * @return name of the subscribed genre
+     */
     public String getSubscribedGenre() {
         return subscribedGenre;
     }
 
-    public void setSubscribedGenre(String subscribedGenre) {
-        this.subscribedGenre = subscribedGenre;
-    }
-
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return type of action
      */
     public String getType() {
         return type;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the page's name
      */
     public String getPage() {
         return page;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the action's feature
      */
     public String getFeature() {
         return feature;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the user's credentials
      */
     public InputCredentials getCredentials() {
         return credentials;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the filters from input
      */
     public FilterInput getFilters() {
         return filters;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the string for "search" action
      */
     public String getStartsWith() {
         return startsWith;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the movie from input
      */
     public String getMovie() {
         return movie;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return the count of tokens that need to pe purchased
      */
     public int getCount() {
         return count;
     }
+
     /**
-     * getter
-     * @return
+     * Getter
+     *
+     * @return user rate from input
      */
     public double getRate() {
         return rate;
-    }
-
-    /**
-     * setter
-     * @param type
-     */
-    public void setType(final String type) {
-        this.type = type;
-    }
-
-    /**
-     * setter
-     * @param page
-     */
-    public void setPage(final String page) {
-        this.page = page;
-    }
-
-    /**
-     * setter
-     * @param feature
-     */
-    public void setFeature(final String feature) {
-        this.feature = feature;
-    }
-
-    /**
-     * setter
-     * @param credentials
-     */
-    public void setCredentials(final InputCredentials credentials) {
-        this.credentials = credentials;
-    }
-
-    /**
-     * setter
-     * @param movie
-     */
-    public void setMovie(final String movie) {
-        this.movie = movie;
-    }
-
-    /**
-     * setter
-     * @param count
-     */
-    public void setCount(final int count) {
-        this.count = count;
-    }
-
-    /**
-     * setter
-     * @param rate
-     */
-    public void setRate(final double rate) {
-        this.rate = rate;
     }
 }

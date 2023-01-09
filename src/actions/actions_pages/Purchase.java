@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class Purchase extends Strategy {
     /**
-     * cauta filmul in lista de filme cumparate
+     * Verify if the movie is in the user's list of purchased movies.
      *
-     * @return 1, daca nu este deja cumparat
-     *          -1, daca a fost cumparat de user deja
+     * @return 1, if the movie is not in the list
+     *        -1, otherwise
      */
     public int findMovie() {
         String nameMovie = super.getSession().getNameCurrMovie();
@@ -25,42 +25,46 @@ public class Purchase extends Strategy {
     }
 
     /**
-     * metoda pentru cumpoararea filmului
-     * @return -1, daca userul premium nu mai are filme gratis si nici tokens ca sa cumpere
-     *          -1, daca userul standard nu are tokens ca sa cumpere filmul
-     *          1, daca actiunea s-a realizat cu succes
+     * Purchase a new film.
+     *
+     * @return 1, if the action was completed successfully
+     *         -1, if the order of actions wasn't respected or other error occurred
+     *         0, if the movie was already purchased
      */
+    @Override
     public int execute() {
         if (findMovie() == -1) {
-            super.getSession().setOldFeature("purchase");
+            getSession().setOldFeature("purchase");
             return 0;
         }
-        if (super.getSession().getOldFeature().equals("watch")
-            || super.getSession().getOldFeature().equals("like")
-            || super.getSession().getOldFeature().equals("rate"))
+        if (getSession().getOldFeature().equals("watch")
+            || getSession().getOldFeature().equals("like")
+            || getSession().getOldFeature().equals("rate")) {
             return -1;
-        if (super.getSession().getCurrentUser().getCredentials().getAccountType().equals("premium")) {
-            if (super.getSession().getCurrentUser().getNumFreePremiumMovies() <= 0) {
-                if (super.getSession().getCurrentUser().getTokensCount() < 2) {
-                    return -1;
+        }
+
+        String accountType = getSession().getCurrentUser().getCredentials().getAccountType();
+
+        if (accountType.equals("premium")) {
+            if (getSession().getCurrentUser().getNumFreePremiumMovies() <= 0) {
+                if (getSession().getCurrentUser().getTokensCount() >= 2) {
+                    int nrTokens = getSession().getCurrentUser().getTokensCount();
+                    getSession().getCurrentUser().setTokensCount(nrTokens - 2);
+                    getSession().setOldFeature("purchase");
+                    return 1;
                 }
-                int nrTokens = super.getSession().getCurrentUser().getTokensCount();
-                super.getSession().getCurrentUser().setTokensCount(nrTokens - 2);
-                super.getSession().setOldFeature("purchase");
+            }
+            int nrMoviesFree = getSession().getCurrentUser().getNumFreePremiumMovies();
+            getSession().getCurrentUser().setNumFreePremiumMovies(nrMoviesFree - 1);
+            getSession().setOldFeature("purchase");
+            return 1;
+        } else if (accountType.equals("standard")) {
+            if (getSession().getCurrentUser().getTokensCount() >= 2) {
+                int nrTokens = getSession().getCurrentUser().getTokensCount();
+                getSession().getCurrentUser().setTokensCount(nrTokens - 2);
+                getSession().setOldFeature("purchase");
                 return 1;
             }
-            int nrMoviesFree = super.getSession().getCurrentUser().getNumFreePremiumMovies();
-            super.getSession().getCurrentUser().setNumFreePremiumMovies(nrMoviesFree - 1);
-            super.getSession().setOldFeature("purchase");
-            return 1;
-        } else if (super.getSession().getCurrentUser().getCredentials().getAccountType().equals("standard")) {
-            if (super.getSession().getCurrentUser().getTokensCount() < 2) {
-                return -1;
-            }
-            int nrTokens = super.getSession().getCurrentUser().getTokensCount();
-            super.getSession().getCurrentUser().setTokensCount(nrTokens - 2);
-            super.getSession().setOldFeature("purchase");
-            return 1;
         }
         return -1;
     }

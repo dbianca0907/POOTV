@@ -8,10 +8,10 @@ import java.util.Map;
 
 public class Rate extends Strategy {
     /**
-     * cauta filmul in lista de filme carora li s-au dat rate
+     * Verify if the movie is in the user's list of available movies.
      *
-     * @return 1, daca nu este deja cumparat
-     *        -1, daca a fost cumparat de user deja
+     * @return 1, if the movie is in the list
+     *        -1, otherwise
      */
     public int findMovie(final ArrayList<Movie> movies) {
         String nameMovie = super.getSession().getNameCurrMovie();
@@ -23,25 +23,34 @@ public class Rate extends Strategy {
         }
         return -1;
     }
+
     /**
-     * se calculeaza rate-ul filmelor
+     * Rate a movie.
+     *
+     * @return 1, if the action was completed successfully
+     *         -1, if the order of actions wasn't respected or other error occurred
+     *         0, if the movie was already rated
      */
+    @Override
     public int execute() {
-        double ratingFromInput = super.getSession().getAction().getRate();
+        double ratingFromInput = getSession().getAction().getRate();
 
         if (ratingFromInput < 1
                 || ratingFromInput > 5
-                || findMovie(super.getSession().getUnbannedMovies()) == -1) {
+                || findMovie(getSession().getUnbannedMovies()) == -1) {
             return -1;
         }
 
-        if (super.getSession().getOldFeature().equals("watch")
-            || super.getSession().getOldFeature().equals("like")) {
-            double rate = super.getSession().getAction().getRate();
+        if (getSession().getOldFeature().equals("watch")
+            || getSession().getOldFeature().equals("like")) {
+            double rate = getSession().getAction().getRate();
 
-            for (Movie movie : super.getSession().getUnbannedMovies()) {
-                if (movie.getName().equals(super.getSession().getNameCurrMovie())) {
-                    String nameUser = super.getSession().getCurrentUser().getCredentials().getName();
+            for (Movie movie : getSession().getUnbannedMovies()) {
+                if (movie.getName().equals(getSession().getNameCurrMovie())) {
+                    /* Adding in a hashmap all the ratings for a movie.
+                       The hashmap is stored using the name of the user as a key and its
+                       given rating. */
+                    String nameUser = getSession().getCurrentUser().getCredentials().getName();
                     movie.getUserRates().put(nameUser, rate);
                     int sum = 0;
                     for (Map.Entry<String, Double> entry : movie.getUserRates().entrySet()) {
@@ -49,6 +58,7 @@ public class Rate extends Strategy {
                     }
                     movie.setNumRatings(movie.getUserRates().size());
                     movie.setRating((double) sum / movie.getNumRatings());
+
                     if (findMovie(super.getSession().getCurrentUser().getRatedMovies()) == 1) {
                         return 0;
                     }
