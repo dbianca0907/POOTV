@@ -39,19 +39,19 @@ public class Movies extends Page {
             getSession().setPageCurr("movies");
             getSession().selectMovies(getSession().getDatabase());
 
-            super.printOnPage();
+            printOnPage();
         } else if (getSession().getNavigation().peek().equals("movies")) {
             getSession().getNavigation().remove();
             getSession().setPageCurr("movies");
             getSession().selectMovies(getSession().getDatabase());
-            super.printOnPage();
+            printOnPage();
         } else if (getSession().getNavigation().peek().equals("logout")
                 || getSession().getNavigation().peek().equals("see details")) {
-            super.navigate(getSession().getNavigation().peek());
+            navigate(getSession().getNavigation().peek());
         } else {
             getSession().getHistory().pop();
             getSession().getNavigation().remove();
-            super.printBasicErrorPage();
+            printBasicErrorPage();
         }
     }
 }

@@ -4,13 +4,14 @@ Starting audit...
 [ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\actions\observer_design\EventManager.java:53:24: '(' is preceded with whitespace. [MethodParamPad]
 [ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\actions\strategy_design\Context.java:14:44: 'strategy' hides a field. [HiddenField]
 [ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\checker\CheckStyleConstants.java:3:1: Utility classes should not have a public or default constructor. [HideUtilityClassConstructor]
-[ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\database\DataBase.java:10:27: ',' is not followed by whitespace. [WhitespaceAfter]
+[ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\database\DataBase.java:11:27: ',' is not followed by whitespace. [WhitespaceAfter]
 [ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\database\user_data\User.java:28:32: '15' is a magic number. [MagicNumber]
 [ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\database\user_data\User.java:116:37: Parameter subscribedGenres should be final. [FinalParameters]
 [ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\input\Parsing.java:15:1: Utility classes should not have a public or default constructor. [HideUtilityClassConstructor]
 [ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\Main.java:11:1: Utility classes should not have a public or default constructor. [HideUtilityClassConstructor]
-[ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\Main.java:13: Line has trailing spaces. [RegexpSingleline]
+[ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\Main.java:12:5: Missing a Javadoc comment. [MissingJavadocMethod]
 [ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\output\Printer.java:125:80: Parameter movie should be final. [FinalParameters]
+[ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\pages\Page.java:7:8: Unused import - pages.hierarchy_of_pages.HomepageLogged. [UnusedImports]
 [ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\Platform.java:15:1: Utility classes should not have a public or default constructor. [HideUtilityClassConstructor]
 [ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\Test.java:1: File does not end with a newline. [NewlineAtEndOfFile]
 [ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\Test.java:9:28: Using the '.*' form of import should be avoided - java.util.concurrent.*. [AvoidStarImport]
@@ -18,4 +19,4 @@ Starting audit...
 [ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\Test.java:206:65: Parameter testFileName should be final. [FinalParameters]
 [ERROR] C:\Users\Dbian\Desktop\POOTV\.\src\Test.java:222: Line is longer than 100 characters (found 108). [LineLength]
 Audit done.
-Checkstyle ends with 18 errors.
+Checkstyle ends with 19 errors.

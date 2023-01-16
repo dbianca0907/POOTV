@@ -103,9 +103,8 @@ public class Page {
             getSession().getNavigation().remove();
             HomepageUnlogged page = new HomepageUnlogged(getOutput(), getSession());
             page.move();
-        } else if (getSession().getPageCurr().equals("logged")) {
-            HomepageLogged page = new HomepageLogged(getOutput(), getSession());
-            page.move();
+        } else {
+            printBasicErrorPage();
         }
     }
 

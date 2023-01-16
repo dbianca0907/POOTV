@@ -28,7 +28,7 @@ public class Login extends Page {
         } else {
             getSession().getNavigation().add("logged");
             getSession().getHistory().push("logged");
-            super.printOnPage();
+            printOnPage();
         }
     }
 
@@ -43,11 +43,11 @@ public class Login extends Page {
             getSession().setPageCurr("login");
         } else if (getSession().getNavigation().peek().equals("logged")
                 || getSession().getNavigation().peek().equals("logout")) {
-            super.navigate(getSession().getNavigation().peek());
+            navigate(getSession().getNavigation().peek());
         } else {
             getSession().getHistory().pop();
             getSession().getNavigation().remove();
-            super.printBasicErrorPage();
+            printBasicErrorPage();
         }
     }
 }

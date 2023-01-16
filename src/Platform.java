@@ -35,7 +35,13 @@ public class Platform {
                 case "change page" -> {
                     if (actionInput.getPage().equals("logout")
                             && currPage.getSession().getPageCurr().equals("logout")) {
+
+                        /*
+                        If the user wants to refresh the Homepage unlogged page I add
+                        "wrong refresh" in the queue for printing the error message
+                        */
                         page.getSession().getNavigation().add("wrongRefresh");
+
                     } else {
                         page.getSession().getNavigation().add(actionInput.getPage());
                         page.addToHistory(actionInput.getPage());
