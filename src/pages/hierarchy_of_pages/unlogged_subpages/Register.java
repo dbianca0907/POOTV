@@ -1,27 +1,26 @@
-package pages.unlogged_subpages;
+package pages.hierarchy_of_pages.unlogged_subpages;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import database.Session;
+import database.session_data.Session;
 import pages.Page;
 
 public class Register extends Page {
 
     /**
-     * constructor
-     * @param output arrayNode-ul pentru output
-     * @param session sesiunea curenta
+     * Constructor
+     *
+     * @param session the current user session
      */
     public Register(final ArrayNode output, final Session session) {
         super(output, session);
     }
 
-
     /**
-     * mai intai se verifica daca in input am primit o alta actiune in afara de login,
-     * dupa se apeleaza metoda execute() din clasa specifica Register-ului
+     * Execute the specific action for this page.
      */
+
     public void actions() {
-        if (super.verifAction("register") == -1) {
+        if (super.verifyAction("register") == -1) {
             return;
         }
         if (getSession().getActionErr() == -1) {
@@ -35,8 +34,7 @@ public class Register extends Page {
         }
     }
     /**
-     * functia de move verifica primul element din coada de navigare si in functie de acesta
-     * se muta pe pagina respectiva
+     * Navigate between pages
      */
     public void move() {
         if (getSession().getNavigation().isEmpty()) {
@@ -44,9 +42,9 @@ public class Register extends Page {
         } else if (getSession().getNavigation().peek().equals("register")) {
             getSession().getNavigation().remove();
             getSession().setPageCurr("register");
-        } else if(getSession().getNavigation().peek().equals("logged")
-                    || getSession().getNavigation().peek().equals("logout")) {
-           super.navigate(getSession().getNavigation().peek());
+        } else if (getSession().getNavigation().peek().equals("logged")
+                || getSession().getNavigation().peek().equals("logout")) {
+            super.navigate(getSession().getNavigation().peek());
         } else {
             getSession().getHistory().pop();
             getSession().getNavigation().remove();

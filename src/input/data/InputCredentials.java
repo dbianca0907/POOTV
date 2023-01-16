@@ -10,7 +10,7 @@ public final class InputCredentials {
     /**
      * Getter
      *
-     * @return user's name
+     * @return user name
      */
     public String getName() {
         return name;
@@ -19,7 +19,7 @@ public final class InputCredentials {
     /**
      * Getter
      *
-     * @return user's password
+     * @return user password
      */
     public String getPassword() {
         return password;
@@ -28,7 +28,7 @@ public final class InputCredentials {
     /**
      * Getter
      *
-     * @return user's type of account
+     * @return user type of account
      */
     public String getAccountType() {
         return accountType;
@@ -37,7 +37,7 @@ public final class InputCredentials {
     /**
      * Getter
      *
-     * @return user's country
+     * @return user country
      */
     public String getCountry() {
         return country;
@@ -46,7 +46,7 @@ public final class InputCredentials {
     /**
      * Getter
      *
-     * @return user's balance
+     * @return user balance
      */
     public int getBalance() {
         return balance;

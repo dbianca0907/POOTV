@@ -4,20 +4,22 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import database.*;
+import database.movie_data.Movie;
+import database.session_data.Session;
 import database.user_data.Credentials;
 import database.user_data.Notification;
 import database.user_data.User;
 
 import java.util.ArrayList;
+
 public final class Printer {
     private static Printer instance = null;
 
-    private Printer() { }
+    private Printer() {
+    }
 
     /**
-     * implementare singleton lA PRINTER
-     * @return
+     * Singleton implementation.
      */
     public static Printer getInstance() {
         if (instance == null) {
@@ -27,11 +29,10 @@ public final class Printer {
     }
 
     /**
-     * afisare eroare standard, in care toatre campurile sunt null
-     * @param session
-     * @param output
+     * Printing message for a "change page" error.
      */
-    public void printBasicErrorPage(final Session session, final ArrayNode output) {
+
+    public void printBasicErrorPage(final ArrayNode output) {
         ObjectNode node = JsonNodeFactory.instance.objectNode();
         String error = "Error";
         node.put("error", error);
@@ -41,9 +42,9 @@ public final class Printer {
     }
 
     /**
-     * printez eroare, pentru cazurile in care campurile trebuie populate
-     * @param session
-     * @param output
+     * Printing the error message for the other errors than the one above.
+     *
+     * @param session the current user session
      */
     public void printBasicError(final Session session, final ArrayNode output) {
         ObjectNode node = JsonNodeFactory.instance.objectNode();
@@ -77,10 +78,9 @@ public final class Printer {
     }
 
     /**
-     * metoda care se ocupa de afisarea pa un page,
-     * sau dupa ce anumite actiuni au fost finalizate cu succes
-     * @param session
-     * @param output
+     * Printing all the information about the current page.
+     *
+     * @param session the user current session
      */
     public void printOnPage(final Session session, final ArrayNode output) {
 
@@ -103,7 +103,12 @@ public final class Printer {
         output.add(node);
     }
 
-    public void printRecomendation(final Session session, final ArrayNode output) {
+    /**
+     * Printing the recommendation.
+     *
+     * @param session the user current session
+     */
+    public void printRecommendation(final Session session, final ArrayNode output) {
         ObjectNode node = JsonNodeFactory.instance.objectNode();
         node.set("error", (JsonNode) null);
         node.set("currentMoviesList", (JsonNode) null);
@@ -112,10 +117,10 @@ public final class Printer {
     }
 
     /**
-     * metoda speciala pentru printul de la pagina "see details"
-     * @param session
-     * @param output
-     * @param movie
+     * Printing the special message for "see details" page.
+     *
+     * @param session the user current session
+     * @param movie   movie from input
      */
     public void printSeeDetails(final Session session, final ArrayNode output, Movie movie) {
         ObjectNode node = JsonNodeFactory.instance.objectNode();
@@ -129,9 +134,7 @@ public final class Printer {
     }
 
     /**
-     * metoda care creeaza nodul specific pentru afisarea detaliilor unui user
-     * @param user
-     * @return
+     * Printing the information about user.
      */
     public ObjectNode printCurrUser(final User user) {
         ObjectNode node = JsonNodeFactory.instance.objectNode();
@@ -148,9 +151,7 @@ public final class Printer {
     }
 
     /**
-     * metoda specifica pentru printarea filmelor dintr-o lista
-     * @param movies
-     * @return
+     * Printing the movies from a specific array of movies.
      */
     public ArrayNode printMovies(final ArrayList<Movie> movies) {
         if (movies == null) {
@@ -163,10 +164,14 @@ public final class Printer {
         return array;
     }
 
-    public ArrayNode printNotification (ArrayList<Notification> notifications) {
+    /**
+     * Printing the message for notifications.
+     */
+    public ArrayNode printNotification(final ArrayList<Notification> notifications) {
         ArrayNode array = JsonNodeFactory.instance.arrayNode();
-        if (notifications == null)
+        if (notifications == null) {
             return array;
+        }
         for (Notification notif : notifications) {
             ObjectNode node = JsonNodeFactory.instance.objectNode();
             node.put("movieName", notif.getNameMovie());
@@ -177,9 +182,7 @@ public final class Printer {
     }
 
     /**
-     * metoda care creeaza nodul specific afisarii detaliilor unui film
-     * @param movie
-     * @return
+     * Printing the information about a movie.
      */
     public ObjectNode printMovie(final Movie movie) {
         ObjectNode node = JsonNodeFactory.instance.objectNode();
@@ -198,9 +201,7 @@ public final class Printer {
     }
 
     /**
-     * metoda care creeaza nodul specific printului detaliilor userului
-     * @param credentials
-     * @return
+     * Printing the credentials about an user
      */
     public ObjectNode printCredentials(final Credentials credentials) {
         ObjectNode node = JsonNodeFactory.instance.objectNode();
@@ -215,9 +216,7 @@ public final class Printer {
     }
 
     /**
-     * metoda care creeaza un arrayNode dintr-un array de stringuri
-     * @param arr
-     * @return
+     * Making an Array Node from an list
      */
     public ArrayNode makeArrString(final ArrayList<String> arr) {
         ArrayNode array = JsonNodeFactory.instance.arrayNode();

@@ -1,5 +1,8 @@
-package database;
+package database.session_data;
 
+import database.action_data.ActionData;
+import database.DataBase;
+import database.movie_data.Movie;
 import database.user_data.User;
 
 import java.util.ArrayList;
@@ -109,7 +112,7 @@ public class Session {
      *
      * @param actionErr the type of error after executing an action
      */
-    public void setActionErr(int actionErr) {
+    public void setActionErr(final int actionErr) {
         this.actionErr = actionErr;
     }
 

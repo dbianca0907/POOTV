@@ -1,9 +1,11 @@
 package pages;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import database.Movie;
-import database.Session;
+import database.movie_data.Movie;
+import database.session_data.Session;
 import output.Printer;
+import pages.hierarchy_of_pages.HomepageLogged;
+import pages.hierarchy_of_pages.HomepageUnlogged;
 
 import java.util.ArrayList;
 
@@ -12,9 +14,7 @@ public class Page {
     private Session session;
 
     /**
-     * constructor
-     * @param output arrayNode-ul primit fin Main
-     * @param session sesiunea curenta a userului
+     * Constructor
      */
     public Page(final ArrayNode output, final Session session) {
         this.output = output;
@@ -23,26 +23,28 @@ public class Page {
 
 
     /**
-     * verifica daca actiunea precizata in input este cea specifica paginii
-     * @param nameAction numele actiunii care ar trebui executata
-     * @return -1, daca actiunea este incorecta
-     *          1, altfel
+     * Verify if the action from input can be executed on the current page.
+     *
+     * @param nameAction the action's name from the input
+     * @return 1, if the action is correct
+     * -1, otherwise
      */
-    public int verifAction(final String nameAction) {
+    public int verifyAction(final String nameAction) {
         if (!getSession().getFeature().equals(nameAction)) {
             Printer p = Printer.getInstance();
-            p.printBasicErrorPage(getSession(), getOutput());
+            p.printBasicErrorPage(getOutput());
             return -1;
         }
         return 1;
     }
 
     /**
-     * functie care gaseste filmul primit in currentList-ul de filme
-     * @param movies lista totala de filme
-     * @param name numele filmului care trebuie sa fie cautat
-     * @return filmul, daca este gasit
-     *           null, altfel
+     * Finding the movie from the list by its name.
+     *
+     * @param movies the list of movies
+     * @param name   the name of the wanted movie
+     * @return the movie, if it is found
+     * null, otherwise
      */
     public Movie findMovieInData(final ArrayList<Movie> movies, final String name) {
         for (Movie movie : movies) {
@@ -54,8 +56,7 @@ public class Page {
     }
 
     /**
-     * print-ul specific pentru afisarea detaliilor unui singur film
-     * @param movie filmul ale carui detalii trebuie afisate
+     * Printing the details about a movie
      */
     public void printOneMovie(final Movie movie) {
         Printer p = Printer.getInstance();
@@ -63,15 +64,15 @@ public class Page {
     }
 
     /**
-     * se apeleaza din printer eroarea in care nu toate campurile trebuie sa fie null
+     * Printing a type of error's message.
      */
     public void printBasicErrorPage() {
         Printer p = Printer.getInstance();
-        p.printBasicErrorPage(getSession(), getOutput());
+        p.printBasicErrorPage(getOutput());
     }
 
     /**
-     * se apeleaza din printer metoda specifica pentru afisarea detaliilor paginii curente
+     * Printing all the details about a current page
      */
     public void printOnPage() {
         Printer p = Printer.getInstance();
@@ -79,25 +80,27 @@ public class Page {
     }
 
     /**
-     * se apeleaza eroarea basic din printer in care tpoate campurile sunt null
+     * Printing a type of error's message.
      */
     public void printBasicError() {
         Printer p = Printer.getInstance();
         p.printBasicError(getSession(), getOutput());
     }
-    /**
-     * metoda comuna a paginilor
-     */
-    public void actions() { }
 
     /**
-     * se incepe iterarea prin pagini, la inceput in platform este adaugata in coada numele
-     * paginii Home Neautentificat, iar currPage este o instanta a clasei Page, practic mutarea prin
-     * paginii incepe de aici
+     * Execute the specific action for this page.
+     * "Page" doesn't have a specific action.
+     */
+    public void actions() {
+        printBasicError();
+    }
+
+    /**
+     * Navigate between pages
      */
     public void move() {
-      if (getSession().getNavigation().peek().equals("logout")) {
-           getSession().getNavigation().remove();
+        if (getSession().getNavigation().peek().equals("logout")) {
+            getSession().getNavigation().remove();
             HomepageUnlogged page = new HomepageUnlogged(getOutput(), getSession());
             page.move();
         } else if (getSession().getPageCurr().equals("logged")) {
@@ -105,7 +108,11 @@ public class Page {
             page.move();
         }
     }
-    public void addToHistory(String namePage) {
+
+    /**
+     * Adding the current page name in the history stack
+     */
+    public void addToHistory(final String namePage) {
         if (!getSession().getHistory().isEmpty()) {
             if (!getSession().getHistory().peek().equals(namePage)) {
                 getSession().getHistory().push(namePage);
@@ -116,19 +123,25 @@ public class Page {
     }
 
     /**
+     * Navigate through pages.
      *
-     * @param namePage
+     * @param namePage next page name
      */
-    public void navigate(String namePage) {
+    public void navigate(final String namePage) {
         PageFactory factory = new PageFactory();
+
+        // remove from the navigation queue page name
         getSession().getNavigation().remove();
+
+        // getting the nest page, using factory design pattern, based on name
         Page page = factory.getPage(namePage, output, getSession());
+
+        // moving forward into navigation
         page.move();
     }
 
     /**
      * getter
-     * @return
      */
     public Session getSession() {
         return session;
@@ -136,20 +149,22 @@ public class Page {
 
     /**
      * getter
-     * @return
      */
     public ArrayNode getOutput() {
         return output;
     }
+
     /**
      * setter
-     * @param output
      */
     public void setOutput(final ArrayNode output) {
         this.output = output;
     }
 
-    public void setSession(Session session) {
+    /**
+     * setter
+     */
+    public void setSession(final Session session) {
         this.session = session;
     }
 }

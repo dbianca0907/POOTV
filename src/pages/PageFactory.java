@@ -1,36 +1,33 @@
 package pages;
+
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import database.Session;
-import pages.unlogged_subpages.Login;
-import pages.unlogged_subpages.Register;
+import database.session_data.Session;
+import pages.hierarchy_of_pages.HomepageLogged;
+import pages.hierarchy_of_pages.HomepageUnlogged;
+import pages.hierarchy_of_pages.logged_subpages.Movies;
+import pages.hierarchy_of_pages.logged_subpages.SeeDetails;
+import pages.hierarchy_of_pages.logged_subpages.Upgrades;
+import pages.hierarchy_of_pages.unlogged_subpages.Login;
+import pages.hierarchy_of_pages.unlogged_subpages.Register;
 
 public class PageFactory {
     /**
-     * factory pentru pagini
-     * @param page numele paginii
-     * @param output output primit din Main
-     * @param session sesiunea curenta
-     * @return
+     * Factory for pages
      */
     public Page getPage(final String page, final ArrayNode output, final Session session) {
-        if (page == null)
+        if (page == null) {
             return null;
-        switch (page) {
-            case "login":
-                return new Login(output, session);
-            case "register":
-                return new Register(output, session);
-            case "logout":
-                return new HomepageUnlogged(output,session);
-            case "logged":
-                return new HomepageLogged(output, session);
-            case "movies":
-                return new Movies(output, session);
-            case "see details":
-                return new SeeDetails(output, session);
-            case "upgrades":
-                return new Upgrades(output, session);
         }
-        return null;
+        return switch (page) {
+            case "login" -> new Login(output, session);
+            case "register" -> new Register(output, session);
+            case "logout" -> new HomepageUnlogged(output, session);
+            case "logged" -> new HomepageLogged(output, session);
+            case "movies" -> new Movies(output, session);
+            case "see details" -> new SeeDetails(output, session);
+            case "upgrades" -> new Upgrades(output, session);
+            default ->  throw new IllegalStateException(
+                    "Incorrect page name!");
+        };
     }
 }

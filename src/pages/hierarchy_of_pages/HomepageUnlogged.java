@@ -1,23 +1,21 @@
-package pages;
+package pages.hierarchy_of_pages;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import database.Session;
-import pages.unlogged_subpages.Login;
-import pages.unlogged_subpages.Register;
+import database.session_data.Session;
+import pages.Page;
 
 public class HomepageUnlogged extends Page {
     /**
-     * constructor
-     * @param output arrayNode-ul pentru output
-     * @param session sesiunea curenta
+     * Constructor
+     *
+     * @param session current user session
      */
     public HomepageUnlogged(final ArrayNode output, final Session session) {
         super(output, session);
     }
 
     /**
-     * singura actiune care se realizeaza este setarea sesiunii isLogged = false,
-     * stim ca user si-a dat logout
+     * Execute the specific action for this page
      */
     public void actions() {
         super.getSession().setLogged(false);
@@ -30,17 +28,14 @@ public class HomepageUnlogged extends Page {
     }
 
     /**
-     * daca coada de navigare este goala, inseamna ca a ajuns la pagina dorita
-     * daca primul element din coada de navigare este numele paginii curente, inseamna ca s-a dat
-     * refresh la pagina
-     * se muta in functie de primul element al cozii pe urmatoarea pagina
+     * Navigate between pages
      */
     public void move() {
         if (super.getSession().getNavigation().isEmpty()) {
-          actions();
-          getSession().setPageCurr("logout");
+            actions();
+            getSession().setPageCurr("logout");
         } else if (super.getSession().getNavigation().peek().equals("login")
-                    || super.getSession().getNavigation().peek().equals("register")) {
+                || super.getSession().getNavigation().peek().equals("register")) {
             actions();
             super.navigate(getSession().getNavigation().peek());
         } else {

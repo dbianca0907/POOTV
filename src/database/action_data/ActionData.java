@@ -1,5 +1,6 @@
-package database;
+package database.action_data;
 
+import database.movie_data.Movie;
 import database.user_data.Credentials;
 
 import java.util.ArrayList;
@@ -152,7 +153,7 @@ public class ActionData {
     /**
      * Getter
      *
-     * @return type of the user's account
+     * @return type of the user account
      */
     public String getType() {
         return type;
@@ -161,7 +162,7 @@ public class ActionData {
     /**
      * Setter
      *
-     * @param type type of the user's account
+     * @param type type of the user account
      */
     public void setType(final String type) {
         this.type = type;
@@ -206,7 +207,7 @@ public class ActionData {
     /**
      * Getter
      *
-     * @return the user's credentials
+     * @return the user credentials
      */
     public Credentials getCredentials() {
         return credentials;
@@ -215,7 +216,7 @@ public class ActionData {
     /**
      * Setter
      *
-     * @param credentials the user's credentials
+     * @param credentials the user credentials
      */
     public void setCredentials(final Credentials credentials) {
         this.credentials = credentials;

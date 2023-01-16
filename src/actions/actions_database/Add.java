@@ -2,7 +2,7 @@ package actions.actions_database;
 
 import actions.observer_design.EventManager;
 import actions.strategy_design.Strategy;
-import database.Movie;
+import database.movie_data.Movie;
 import java.util.ArrayList;
 
 public class Add extends Strategy {
@@ -10,7 +10,8 @@ public class Add extends Strategy {
     /**
      * Search in the given list a movie, based on its name.
      *
-     * @param movies the given list of movies, in this case the list with all the movies from Database
+     * @param movies the given list of movies, in this case the list
+     *              with all the movies from Database
      * @param nameMovie the name of the movie received from input
      * @return -1, if the movie was found in the list (error)
      *          1, otherwise

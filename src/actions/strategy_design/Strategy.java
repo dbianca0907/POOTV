@@ -1,6 +1,6 @@
 package actions.strategy_design;
 
-import database.Session;
+import database.session_data.Session;
 
 public abstract class Strategy {
     private Session session;
@@ -10,7 +10,7 @@ public abstract class Strategy {
      *
      * @param session the current session
      */
-    public void setSession(Session session) {
+    public void setSession(final Session session) {
         this.session = session;
     }
 

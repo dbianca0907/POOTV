@@ -1,14 +1,14 @@
 package actions.actions_pages;
 
 import actions.strategy_design.Strategy;
-import database.Movie;
+import database.movie_data.Movie;
 
 import java.util.ArrayList;
 import java.util.Map;
 
 public class Rate extends Strategy {
     /**
-     * Verify if the movie is in the user's list of available movies.
+     * Verify if the movie is in the user list of available movies.
      *
      * @return 1, if the movie is in the list
      *        -1, otherwise

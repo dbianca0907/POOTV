@@ -56,7 +56,7 @@ public class ActionsInput {
     /**
      * Getter
      *
-     * @return the page's name
+     * @return the page name
      */
     public String getPage() {
         return page;
@@ -74,7 +74,7 @@ public class ActionsInput {
     /**
      * Getter
      *
-     * @return the user's credentials
+     * @return the user credentials
      */
     public InputCredentials getCredentials() {
         return credentials;

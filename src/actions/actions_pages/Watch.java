@@ -1,13 +1,13 @@
 package actions.actions_pages;
 
 import actions.strategy_design.Strategy;
-import database.Movie;
+import database.movie_data.Movie;
 
 import java.util.ArrayList;
 
 public class Watch extends Strategy {
     /**
-     * Verify if the movie is in the user's list of watched movies.
+     * Verify if the movie is in the user list of watched movies.
      *
      * @return 1, if the movie is not in the list
      *        -1, otherwise

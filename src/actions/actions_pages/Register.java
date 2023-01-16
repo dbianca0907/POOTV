@@ -18,12 +18,11 @@ public class Register extends Strategy {
         String name = getSession().getAction().getCredentials().getName();
         String password = getSession().getAction().getCredentials().getPassword();
 
-        // The key was made by the user's name and its password
+        // The key was made by the user name and its password
 
         if (getSession().getDatabase().getUserHashMap().containsKey(name + password)) {
             return -1;
         }
-        
         Credentials input = getSession().getAction().getCredentials();
         Credentials newCr = new Credentials(input.getName(), input.getPassword(),
                                             input.getAccountType(),

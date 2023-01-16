@@ -1,7 +1,7 @@
 package actions.observer_design;
 
 import database.DataBase;
-import database.Movie;
+import database.movie_data.Movie;
 import database.user_data.Notification;
 import database.user_data.User;
 
@@ -20,7 +20,6 @@ public class EventManager {
     public EventManager(final DataBase dataBase) {
         this.dataBase = dataBase;
         ArrayList<User> allUsers = dataBase.getUsers();
-
         for (User user : allUsers) {
             // verify if the user subscribed to any genre
             ArrayList<String> subscriptions = user.getSubscribedGenres();
@@ -51,8 +50,7 @@ public class EventManager {
      * @param movie the movie that was added or deleted
      */
 
-    public void notify (String eventType, Movie movie) {
-
+    public void notify (final String eventType, final Movie movie) {
         ArrayList<String> genres = movie.getGenres();
         for (String genre : genres) {
             ArrayList<User> users = subscribers.get(genre);
@@ -69,14 +67,14 @@ public class EventManager {
     }
 
     /**
-     * Deactivate the user's notifications (avoiding sending the same notification)
+     * Deactivate the user notifications (avoiding sending the same notification)
      * @param user the user from the list
      */
-    public void turnOffUserNotifications(User user) {
+    public void turnOffUserNotifications(final User user) {
         user.setNotified(true);
     }
     /**
-     * Activate the user's notifications for the next actions.
+     * Activate the user notifications for the next actions.
      */
     public void turnOnUserNotifications() {
         for (User user : dataBase.getUsers()) {

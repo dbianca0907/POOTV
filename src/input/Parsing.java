@@ -1,7 +1,8 @@
 package input;
-import database.ActionData;
+
+import database.action_data.ActionData;
 import database.user_data.Credentials;
-import database.Movie;
+import database.movie_data.Movie;
 import database.user_data.User;
 import input.actions.ActionsInput;
 import input.data.InputCredentials;
@@ -16,7 +17,7 @@ public class Parsing {
      * Parsing all the action's information from input to "ActionData" class.
      *
      * @param input information from input
-     * @return the new created object
+     * @return reference to the new created object
      */
     public static ActionData parseAction(final ActionsInput input) {
         ActionData actionData = new ActionData();
@@ -83,10 +84,10 @@ public class Parsing {
     }
 
     /**
-     * Parsing all .
+     * Parsing all the information about users from input in other class.
      *
      * @param input information from input
-     * @return the new created object
+     * @return reference to the new created object
      */
     public static ArrayList<User> parseUsers(final InputData input) {
         ArrayList<InputUser> usersInput = input.getUsers();
@@ -94,8 +95,8 @@ public class Parsing {
 
         for (InputUser userInput : usersInput) {
             InputCredentials cr = userInput.getCredentials();
-            Credentials userCr = new Credentials(cr.getName(), cr.getPassword(), cr.getAccountType(),
-                    cr.getCountry(), cr.getBalance());
+            Credentials userCr = new Credentials(cr.getName(), cr.getPassword(),
+                    cr.getAccountType(), cr.getCountry(), cr.getBalance());
             User user = new User(userCr);
             users.add(user);
         }
@@ -103,9 +104,10 @@ public class Parsing {
     }
 
     /**
-     * clasa de parsare a filmelor din clasa de input in clasa pe care o folosesc la comenzi
-     * @param input
-     * @return
+     * Parsing all the movies in the Database from input.
+     *
+     * @param input information from input
+     * @return reference to the new created object
      */
     public static ArrayList<Movie> parseMovies(final InputData input) {
         ArrayList<InputMovie> moviesInput = input.getMovies();
@@ -121,12 +123,13 @@ public class Parsing {
     }
 
     /**
+     * Parsing all the information about a movie int the Database.
      *
-     * @param input
-     * @return
+     * @param input information from input
+     * @return reference to the new created object
      */
-    public static Movie parseMovie (final ActionsInput input) {
-        Movie movie =  new Movie (input.getAddedMovie().getName(), input.getAddedMovie().getYear(),
+    public static Movie parseMovie(final ActionsInput input) {
+        Movie movie = new Movie(input.getAddedMovie().getName(), input.getAddedMovie().getYear(),
                 input.getAddedMovie().getDuration(), input.getAddedMovie().getGenres(),
                 input.getAddedMovie().getActors(), input.getAddedMovie().getCountriesBanned());
         return movie;

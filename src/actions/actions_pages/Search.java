@@ -1,12 +1,12 @@
 package actions.actions_pages;
 
 import actions.strategy_design.Strategy;
-import database.Movie;
+import database.movie_data.Movie;
 
 public class Search extends Strategy {
 
     /**
-     * Search a specific movie in the user's current list of movies.
+     * Search a specific movie in the user current list of movies.
      *
      * @return 1, if the action was completed successfully
      *        -1, other error occurred

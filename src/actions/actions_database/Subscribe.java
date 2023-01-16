@@ -1,7 +1,7 @@
 package actions.actions_database;
 
 import actions.strategy_design.Strategy;
-import database.Movie;
+import database.movie_data.Movie;
 
 import java.util.ArrayList;
 
@@ -16,9 +16,9 @@ public class Subscribe extends Strategy {
      */
     @Override
     public int execute() {
-        String genre = super.getSession().getAction().getSubscribedGenre();
-        ArrayList<Movie> movies = super.getSession().getUnbannedMovies();
-        ArrayList<String> userSubscriptions = super.getSession().getCurrentUser().getSubscribedGenres();
+        String genre = getSession().getAction().getSubscribedGenre();
+        ArrayList<Movie> movies = getSession().getUnbannedMovies();
+        ArrayList<String> userSubscriptions = getSession().getCurrentUser().getSubscribedGenres();
 
         if (userSubscriptions.contains(genre)
             || movies == null) {
@@ -26,7 +26,7 @@ public class Subscribe extends Strategy {
         }
 
         for (Movie movie : movies) {
-            if (movie.getName().equals(super.getSession().getNameCurrMovie())) {
+            if (movie.getName().equals(getSession().getNameCurrMovie())) {
                 if (movie.getGenres().contains(genre)) {
                     getSession().getCurrentUser().getSubscribedGenres().add(genre);
                     return 1;

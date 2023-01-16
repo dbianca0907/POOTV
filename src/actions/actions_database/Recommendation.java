@@ -1,10 +1,14 @@
 package actions.actions_database;
 
-import database.Movie;
+import database.movie_data.Movie;
 import database.user_data.Notification;
-import database.Session;
+import database.session_data.Session;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Recommendation {
     private Session session;
@@ -20,13 +24,13 @@ public class Recommendation {
     }
 
     /**
-     * Find the current user's most liked genre.
+     * Find the current user most liked genre.
      *
-     * @param likedMovies the list that contains the user's liked movies
+     * @param likedMovies the list that contains the user liked movies
      * @return the most liked genre or null if an error occurred
      */
     public String findLikedGenre(final ArrayList<Movie> likedMovies) {
-        /* Adding all the genres from the user's liked movies in a
+        /* Adding all the genres from the user liked movies in a
             treemap -> (genre, number of likes), the genres are sorted lexicographically */
 
         for (Movie movie : likedMovies) {
@@ -63,10 +67,10 @@ public class Recommendation {
     }
 
     /**
-     * Finding the movie that contains the most liked genre
+     * Finding the movie that contains the most liked genre.
+     *
      * @param likedGenre the most liked genre
-     * @param movies the list that contains all the unwatched movies that the user is allowed to watch
-     * @return
+     * @param movies     the list that contains all the available to watch
      */
     public Movie findRecommendation(final String likedGenre, final ArrayList<Movie> movies) {
         ArrayList<Movie> sortedMovies = new ArrayList<>();
@@ -92,7 +96,7 @@ public class Recommendation {
             }
         }
 
-        // Getting the movie that contains user's most liked genre
+        // Getting the movie that contains user most liked genre
 
         for (Movie movie : sortedMovies) {
             if (movie.getGenres() != null) {
@@ -141,7 +145,7 @@ public class Recommendation {
 
         if (recommendation == null) {
             notify = new Notification("No recommendation",
-                                            "Recommendation");
+                    "Recommendation");
         } else {
             notify = new Notification(recommendation.getName(),
                     "Recommendation");

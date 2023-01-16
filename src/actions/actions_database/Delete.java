@@ -2,7 +2,7 @@ package actions.actions_database;
 
 import actions.observer_design.EventManager;
 import actions.strategy_design.Strategy;
-import database.Movie;
+import database.movie_data.Movie;
 import database.user_data.User;
 
 import java.util.ArrayList;
@@ -11,7 +11,8 @@ public class Delete extends Strategy {
     /**
      *  Search in the given list a movie, based on its name.
      *
-     * @param movies the given list of movies, in this case the list with all the movies from Database
+     * @param movies the given list of movies, in this case the list
+     *               with all the movies from Database
      * @param nameMovie the name of the movie received from input
      * @return the found movie, if it is in the Database
      *         null, otherwise
@@ -43,9 +44,9 @@ public class Delete extends Strategy {
     }
 
     /**
-     * Deleting the movie if it is found in the user's movie list.
+     * Deleting the movie if it is found in the user movie list.
      *
-     * @param movies user's movie list
+     * @param movies user movie list
      * @param nameMovie the name of the movie that has to be deleted
      * @return true, if there was found a movie and was deleted
      *         false, otherwise

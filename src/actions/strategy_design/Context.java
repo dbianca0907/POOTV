@@ -1,7 +1,6 @@
 package actions.strategy_design;
 
-import actions.strategy_design.Strategy;
-import database.Session;
+import database.session_data.Session;
 
 public class Context {
     private Strategy strategy;
@@ -12,7 +11,7 @@ public class Context {
      * @param strategy the type of action
      * @param session the current session
      */
-    public void setStrategy(Strategy strategy, Session session) {
+    public void setStrategy(final Strategy strategy, final Session session) {
         this.strategy = strategy;
         this.strategy.setSession(session);
     }

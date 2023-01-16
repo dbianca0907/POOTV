@@ -2,9 +2,9 @@ import actions.actions_database.Recommendation;
 import actions.factory_design.ActionFactory;
 import actions.strategy_design.Context;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import database.ActionData;
+import database.action_data.ActionData;
 import database.DataBase;
-import database.Session;
+import database.session_data.Session;
 import input.Parsing;
 import input.actions.ActionsInput;
 import input.data.InputData;
@@ -13,6 +13,9 @@ import pages.Page;
 import pages.PageFactory;
 
 public class Platform {
+    /**
+     * Main platform for interaction between user and server
+     */
     public static void main(final InputData input, final ArrayNode output) {
 
         DataBase database = new DataBase(Parsing.parseUsers(input),
@@ -97,7 +100,7 @@ public class Platform {
                 Recommendation recomendation = new Recommendation(page.getSession());
                 recomendation.execute();
                 Printer printer = Printer.getInstance();
-                printer.printRecomendation(session, output);
+                printer.printRecommendation(session, output);
             }
         }
 

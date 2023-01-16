@@ -1,7 +1,7 @@
 package actions.actions_pages;
 
 import actions.strategy_design.Strategy;
-import database.Movie;
+import database.movie_data.Movie;
 
 import java.util.ArrayList;
 import java.util.Collections;

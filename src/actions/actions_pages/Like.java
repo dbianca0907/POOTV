@@ -1,13 +1,13 @@
 package actions.actions_pages;
 
 import actions.strategy_design.Strategy;
-import database.Movie;
+import database.movie_data.Movie;
 
 import java.util.ArrayList;
 
 public class Like extends Strategy {
     /**
-     * Verify if the movie is in the user's list of liked movies.
+     * Verify if the movie is in the user list of liked movies.
      *
      * @return 1, if the movie is not in the list
      *        -1, otherwise
@@ -26,7 +26,7 @@ public class Like extends Strategy {
     }
 
     /**
-     * Increasing the number of likes to a given movie and adding it to a user's list of movies.
+     * Increasing the number of likes to a given movie and adding it to a user list of movies.
      *
      * @return 1, if the action was completed successfully
      *         -1, if the order of actions wasn't respected or any other error occurred

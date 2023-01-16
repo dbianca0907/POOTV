@@ -10,11 +10,11 @@ public class Credentials {
     /**
      * Constructor
      *
-     * @param name user's name
-     * @param password user's password
-     * @param accountType user's type of account
-     * @param country user's country
-     * @param balance user's balance
+     * @param name user name
+     * @param password user password
+     * @param accountType user type of account
+     * @param country user country
+     * @param balance user balance
      */
     public Credentials(final String name,
                        final String password,
@@ -31,7 +31,7 @@ public class Credentials {
     /**
      * Getter
      *
-     * @return user's name
+     * @return user name
      */
     public String getName() {
         return name;
@@ -40,7 +40,7 @@ public class Credentials {
     /**
      * Getter
      *
-     * @return user's password
+     * @return user password
      */
     public String getPassword() {
         return password;
@@ -49,7 +49,7 @@ public class Credentials {
     /**
      * Getter
      *
-     * @return user's type of account
+     * @return user type of account
      */
     public String getAccountType() {
         return accountType;
@@ -58,7 +58,7 @@ public class Credentials {
     /**
      * Getter
      *
-     * @return user's country
+     * @return user country
      */
     public String getCountry() {
         return country;
@@ -67,7 +67,7 @@ public class Credentials {
     /**
      * Getter
      *
-     * @return user's balance
+     * @return user balance
      */
     public int getBalance() {
         return balance;
@@ -76,7 +76,7 @@ public class Credentials {
     /**
      * Setter
      *
-     * @return user's name
+     * @return user name
      */
     public void setName(final String name) {
         this.name = name;
@@ -85,7 +85,7 @@ public class Credentials {
     /**
      * Setter
      *
-     * @return user's password
+     * @return user password
      */
     public void setPassword(final String password) {
         this.password = password;
@@ -94,7 +94,7 @@ public class Credentials {
     /**
      * Setter
      *
-     * @return user's type of account
+     * @return user type of account
      */
     public void setAccountType(final String accountType) {
         this.accountType = accountType;
@@ -103,7 +103,7 @@ public class Credentials {
     /**
      * Setter
      *
-     * @return user's country
+     * @return user country
      */
     public void setCountry(final String country) {
         this.country = country;
@@ -112,7 +112,7 @@ public class Credentials {
     /**
      * Setter
      *
-     * @return user's balance
+     * @return user balance
      */
     public void setBalance(final int balance) {
         this.balance = balance;

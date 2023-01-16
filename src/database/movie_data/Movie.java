@@ -1,4 +1,4 @@
-package database;
+package database.movie_data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,7 +40,7 @@ public class Movie {
     /**
      * Getter
      *
-     * @return hashmap that contains the user's names and their ratings for the movie
+     * @return hashmap that contains the user names and their ratings for the movie
      */
     public HashMap<String, Double> getUserRates() {
         return userRates;

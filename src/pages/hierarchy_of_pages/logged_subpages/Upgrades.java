@@ -1,20 +1,21 @@
-package pages;
+package pages.hierarchy_of_pages.logged_subpages;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import database.Session;
+import database.session_data.Session;
+import pages.Page;
 
 public class Upgrades extends Page {
     /**
-     * constructor
-     * @param output arrayNode-ul pentru output
-     * @param session sesiunea curenta
+     * Constructor
+     *
+     * @param session the current user session
      */
     public Upgrades(final ArrayNode output, final Session session) {
         super(output, session);
     }
 
     /**
-     * se realizeaza actiunea de cumparare token/cont premium
+     * Execute the specific action for this page.
      */
     public void actions() {
         if (getSession().getActionErr() == 0) {
@@ -23,11 +24,9 @@ public class Upgrades extends Page {
             super.printBasicError();
         }
     }
+
     /**
-     * daca coada de navigare este goala, inseamna ca a ajuns la pagina dorita
-     * daca primul element din coada de navigare este numele paginii curente, inseamna ca s-a dat
-     * refresh la pagina
-     * se muta in functie de primul element al cozii pe urmatoarea pagina
+     * Navigate between pages
      */
     public void move() {
         if (getSession().getNavigation().isEmpty()) {
@@ -36,8 +35,8 @@ public class Upgrades extends Page {
             getSession().getNavigation().remove();
             getSession().setPageCurr("upgrades");
         } else if (getSession().getNavigation().peek().equals("movies")
-                    || getSession().getNavigation().peek().equals("logout")) {
-          super.navigate(getSession().getNavigation().peek());
+                || getSession().getNavigation().peek().equals("logout")) {
+            super.navigate(getSession().getNavigation().peek());
         } else {
             getSession().getNavigation().remove();
             getSession().getHistory().pop();

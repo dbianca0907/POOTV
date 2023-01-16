@@ -1,22 +1,21 @@
-package pages;
+package pages.hierarchy_of_pages.logged_subpages;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import database.Session;
+import database.session_data.Session;
+import pages.Page;
 
 public class Movies extends Page {
     /**
-     * constructor
-     * @param output arrayNode-ul pentru output
-     * @param session sesiunea curenta
+     * Cpnstructor
+     *
+     * @param session the current user session
      */
     public Movies(final ArrayNode output, final Session session) {
         super(output, session);
     }
 
     /**
-     * se apeleaza actiunile specifice in functie de feature-ul primit la input,
-     * daca actiunea nu s-a realizat cu succes, sau actiunea este diferita fata de cele dispuse
-     * paginii se afiseaza eroare
+     * Execute the specific action for this page.
      */
     public void actions() {
         if (getSession().getFeature().equals("search")) {
@@ -33,11 +32,7 @@ public class Movies extends Page {
     }
 
     /**
-     * daca coada de navigare este goala, inseamna ca a ajuns la pagina dorita,
-     * deci se apeleaza printul
-     * daca primul element din coada de navigare este numele paginii curente, inseamna ca s-a dat
-     * refresh la pagina
-     * se muta in functie de primul element al cozii pe urmatoarea pagina
+     * Navigate between pages
      */
     public void move() {
         if (getSession().getNavigation().isEmpty()) {
@@ -51,7 +46,7 @@ public class Movies extends Page {
             getSession().selectMovies(getSession().getDatabase());
             super.printOnPage();
         } else if (getSession().getNavigation().peek().equals("logout")
-                    || getSession().getNavigation().peek().equals("see details")) {
+                || getSession().getNavigation().peek().equals("see details")) {
             super.navigate(getSession().getNavigation().peek());
         } else {
             getSession().getHistory().pop();

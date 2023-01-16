@@ -1,12 +1,12 @@
 package database.user_data;
 
 import actions.observer_design.Observer;
-import database.Movie;
+import database.movie_data.Movie;
 
 import java.util.ArrayList;
 
 public class User implements Observer {
-    boolean isNotified = false;
+    private boolean isNotified = false;
     private Credentials credentials;
     private ArrayList<Movie> purchasedMovies;
     private ArrayList<Movie> watchedMovies;
@@ -20,7 +20,7 @@ public class User implements Observer {
     /**
      * Constructor
      *
-     * @param cr user's credentials
+     * @param cr user credentials
      */
     public User(final Credentials cr) {
         credentials = cr;
@@ -33,7 +33,7 @@ public class User implements Observer {
      *
      * @param notification received from the EventManager
      */
-    public void update(Notification notification) {
+    public void update(final Notification notification) {
         getNotifications().add(notification);
     }
 
@@ -76,7 +76,7 @@ public class User implements Observer {
     /**
      * Getter
      *
-     * @return the list of user's notifications
+     * @return the list of user notifications
      */
     public ArrayList<Notification> getNotifications() {
         if (notifications == null) {
@@ -89,9 +89,9 @@ public class User implements Observer {
     /**
      * Setter
      *
-     * @param notifications the list of user's notifications
+     * @param notifications the list of user notifications
      */
-    public void setNotifications(ArrayList<Notification> notifications) {
+    public void setNotifications(final ArrayList<Notification> notifications) {
         this.notifications = notifications;
     }
 

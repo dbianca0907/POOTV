@@ -1,26 +1,26 @@
-package pages.unlogged_subpages;
+package pages.hierarchy_of_pages.unlogged_subpages;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import database.Session;
+import database.session_data.Session;
 import pages.Page;
 
 public class Login extends Page {
     /**
-     * constructor
-     * @param output arrayNode-ul pentru output
-     * @param session sesiunea curenta
+     * Constructor
+     *
+     * @param session the current user session
      */
     public Login(final ArrayNode output, final Session session) {
         super(output, session);
     }
 
     /**
-     * mai intai se verifica daca in input am primit o alta actiune in afara de login,
-     * dupa se apeleaza metoda execute() din clasa specifica Login-ului
+     * Execute the specific action for this page.
      */
     public void actions() {
-       if (super.verifAction("login") == -1)
-           return;
+        if (super.verifyAction("login") == -1) {
+            return;
+        }
         if (getSession().getActionErr() == -1) {
             super.printBasicError();
             getSession().getHistory().push("logout");
@@ -31,11 +31,9 @@ public class Login extends Page {
             super.printOnPage();
         }
     }
+
     /**
-     * daca coada de navigare este goala, inseamna ca a ajuns la pagina dorita
-     * daca primul element din coada de navigare este numele paginii curente, inseamna ca s-a dat
-     * refresh la pagina
-     * se muta in functie de primul element al cozii pe urmatoarea pagina
+     * Navigate through pages
      */
     public void move() {
         if (getSession().getNavigation().isEmpty()) {

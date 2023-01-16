@@ -1,5 +1,6 @@
 package database;
 
+import database.movie_data.Movie;
 import database.user_data.User;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.HashMap;
 
 public class DataBase {
 
-    private HashMap<String, User> userHashMap;
+    private HashMap<String,User> userHashMap;
     private ArrayList<User> users;
     private ArrayList<Movie> allMovies;
 
@@ -22,8 +23,9 @@ public class DataBase {
         this.users = users;
         this.allMovies = allMovies;
         this.userHashMap = new HashMap<>();
-        for (User user : users)
+        for (User user : users) {
             addUsers(user);
+        }
     }
 
     /**

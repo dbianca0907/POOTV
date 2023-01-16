@@ -3,7 +3,16 @@ package actions.factory_design;
 import actions.actions_database.Add;
 import actions.actions_database.Delete;
 import actions.actions_database.Subscribe;
-import actions.actions_pages.*;
+import actions.actions_pages.Like;
+import actions.actions_pages.Register;
+import actions.actions_pages.Search;
+import actions.actions_pages.Filter;
+import actions.actions_pages.Login;
+import actions.actions_pages.Buy;
+import actions.actions_pages.Rate;
+import actions.actions_pages.Purchase;
+import actions.actions_pages.Watch;
+
 import actions.strategy_design.Strategy;
 
 public class ActionFactory {
@@ -13,8 +22,9 @@ public class ActionFactory {
      * @return the reference to a created object
      */
     public Strategy getStrategy(final String action) {
-        if (action == null)
+        if (action == null) {
             return null;
+        }
         return switch (action) {
             case "login" -> new Login();
             case "register" -> new Register();
